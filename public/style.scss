@@ -4,15 +4,30 @@ $primary: rgb(9, 125, 167);
 $secondary: #EC770F;
 $danger: #96181C;
 
-$theme-colors: (
-  'primary': $primary,
-  'secondary': $secondary,
-  'danger': $danger,
+$theme-colors: ('primary': $primary,
+'secondary': $secondary,
+'danger': $danger,
 );
 
-@mixin center() {
+.center {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.full-container {
+    height: 100%;
+    width: 100%;
+}
+
+#app {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    @extend .center;
+    @extend .full-container;
 }
 
 body {
@@ -58,7 +73,14 @@ form div {
 }
 
 .card {
-  border: 1px solid black;
+    border: 1px solid black;
+}
+
+.initial-loader-wrapper {
+    background-color: black;
+    @extend .center;
+    @extend .full-container;
+    height: 20rem;
 }
 
 .body-card {
@@ -72,14 +94,14 @@ form div {
 }
 
 .characters-body {
-  .row {
-    margin: 1rem 0;
-  }
+    .row {
+        margin: 1rem 0;
+    }
 }
 
 .alignment-header {
     width: 100%;
-    @include center();
+    @extend .center;
     margin-bottom: 2rem;
 
     .bad {
@@ -89,4 +111,10 @@ form div {
     .good {
         content: url('/heroes.png');
     }
+}
+
+img {
+  &.loading {
+    content: url('/loading.png');
+  }
 }

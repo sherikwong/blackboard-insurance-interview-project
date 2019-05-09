@@ -32,7 +32,7 @@ class Characters extends Component {
         const newGrid = new Array(3).fill(new Array(3).fill(0));
         newGrid.map((row, rowIndex) => {
             row.map((column, columnIndex) => {
-                this.getAndCheckAlignment(this.state.currentCharacterId);
+                // this.getAndCheckAlignment(this.state.currentCharacterId);
             });
         })
     }

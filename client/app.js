@@ -4,7 +4,7 @@ import '../public/style.scss';
 import { Home } from './components/index'
 const App = () => {
   return (
-    <div>
+    <div className="full-container center">
       <Home />
       {/* <Routes /> */}
     </div>
