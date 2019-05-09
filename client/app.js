@@ -1,12 +1,13 @@
 import React from 'react'
-import Routes from './routes'
+// import Routes from './routes'
 import '../public/style.scss';
-
+import { Home } from './components/index'
 const App = () => {
   return (
-      <div>
-          <Routes />
-      </div>
+    <div>
+      <Home />
+      {/* <Routes /> */}
+    </div>
   )
 }
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchBiographyById } from './store/superheroes';
-import '../public/style.scss';
+import { fetchBiographyById } from '../store/superheroes';
 
-class App extends Component {
+class Characters extends Component {
     constructor(props) {
         super(props);
         this.props.fetchBiographyById(2);
@@ -33,6 +32,5 @@ export default withRouter(
     connect(
         mapState,
         mapDispatch
-    )
-        (App)
+    )(Characters)
 );
