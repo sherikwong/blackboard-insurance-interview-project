@@ -1,6 +1,18 @@
-@mixin center(){
-  display: flex;
-  justify-content: center;
+@import "~bootstrap/scss/bootstrap";
+
+$primary: rgb(9, 125, 167);
+$secondary: #EC770F;
+$danger: #96181C;
+
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'danger': $danger,
+);
+
+@mixin center() {
+    display: flex;
+    justify-content: center;
 }
 
 body {
@@ -19,7 +31,7 @@ body {
         width: 100%;
         display: flex;
         justify-content: center;
-        padding: 10rem 0 3rem 0;
+        padding: 10rem 0 0 0;
 
         img {
             content: url('/logo.png');
@@ -46,6 +58,11 @@ form div {
 }
 
 .card {
+  border: 1px solid black;
+}
+
+.body-card {
+    @extend .card;
     border: 2px solid black;
     background-color: rgba(#ffffff, .8);
 }
@@ -54,9 +71,17 @@ form div {
     margin: 0 5rem;
 }
 
+.characters-body {
+  .row {
+    margin: 1rem 0;
+  }
+}
+
 .alignment-header {
-  width: 100%;
-  @include center();
+    width: 100%;
+    @include center();
+    margin-bottom: 2rem;
+
     .bad {
         content: url('/villians.png');
     }

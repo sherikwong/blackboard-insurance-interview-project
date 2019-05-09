@@ -10,14 +10,14 @@ class Character extends Component {
     // }
 
     componentDidMount() {
-        // this.props.fetchBiographyById();
+        this.props.fetchBiographyById(this.props.id);
     }
 
     render() {
         return (
             <Card>
                 <CardBody>
-                    hello
+
                 </CardBody>
             </Card>
         )
