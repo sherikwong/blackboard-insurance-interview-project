@@ -2,15 +2,16 @@ import axios from 'axios';
 import { SUPERHERO_URL, CORS_PROXY } from '../constants';
 
 const GET_SUPERHERO = 'GET_SUPERHERO';
+const GET_BIOGRAPHY = 'GET_BIOGRAPHY';
 
 // Action creator
 export const profileAction = superhero => ({
     type: GET_SUPERHERO,
     superhero
 })
-export const biographyAction = superhero => ({
-    type: GET_SUPERHERO,
-    superhero
+export const biographyAction = biography => ({
+    type: GET_BIOGRAPHY,
+    biography
 })
 
 // Thunk
@@ -30,7 +31,9 @@ export const fetchBiographyById = id => {
 const superHeroReducer = (state = [], action) => {
     switch (action.type) {
         case GET_SUPERHERO:
-            return action.superheroes;
+            return action.superhero;
+        case GET_BIOGRAPHY:
+            return action.biography;
         default:
             return state;
     }

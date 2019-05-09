@@ -1,12 +1,22 @@
 body {
   font-family: 'Marvel', sans-serif;
-  background-image: url('./background.jpeg');
+  background-image: url('/background.jpeg');
   background-repeat: no-repeat;
+  background-position-x: center;
+  height: 100%;
+  background-color: black;
 }
 
 .header {
+  width: 100%;
   .logo {
-  
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10rem;
+    img {
+      content: url('/logo.png');
+    }
   }
 }
 

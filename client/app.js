@@ -1,40 +1,13 @@
-import React, { Component } from 'react'
-import { Navbar } from './components'
+import React from 'react'
 import Routes from './routes'
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import {fetchSuperHeroById} from './store/superheroes';
+import '../public/style.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.props.fetchSuperHeroById(2);
-  }
-
-  render() {
-    return (
+const App = () => {
+  return (
       <div>
-        <Navbar />
-        <Routes />
+          <Routes />
       </div>
-    )
-  }
-}
-
-const mapState = () => {
-  return null;
-}
-
-const mapDispatch = dispatch => {
-  return {
-    fetchSuperHeroById: id => dispatch(fetchSuperHeroById(id))
-  }
-}
-
-export default withRouter(
-  connect(
-    mapState,
-    mapDispatch
   )
-  (App)
-  );
+}
+
+export default App;
