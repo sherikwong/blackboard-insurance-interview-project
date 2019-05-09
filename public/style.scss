@@ -1,39 +1,67 @@
+@mixin center(){
+  display: flex;
+  justify-content: center;
+}
+
 body {
-  font-family: 'Marvel', sans-serif;
-  background-image: url('/background.jpeg');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  height: 100%;
-  background-color: black;
+    font-family: 'Raleway', sans-serif;
+    background-image: url('/background.jpeg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 100%;
+    background-color: black;
 }
 
 .header {
-  width: 100%;
-  .logo {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 10rem;
-    img {
-      content: url('/logo.png');
+
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10rem 0 3rem 0;
+
+        img {
+            content: url('/logo.png');
+        }
     }
-  }
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 label {
-  display: block;
+    display: block;
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+    display: inline-block;
+    margin: 1em;
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+    margin: 1em;
+    display: inline-block;
+}
+
+.card {
+    border: 2px solid black;
+    background-color: rgba(#ffffff, .8);
+}
+
+.body {
+    margin: 0 5rem;
+}
+
+.alignment-header {
+  width: 100%;
+  @include center();
+    .bad {
+        content: url('/villians.png');
+    }
+
+    .good {
+        content: url('/heroes.png');
+    }
 }

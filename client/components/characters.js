@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchBiographyById } from '../store/superheroes';
+import { Row, Col, Card, CardBody } from 'reactstrap';
+import { Character } from './index'
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Characters extends Component {
-    constructor(props) {
-        super(props);
-        this.props.fetchBiographyById(2);
-    }
-
     render() {
         return (
-            <div>
+            <Card>
+                <CardBody>
+                    <div className="alignment-header">
+                        <img className={this.props.alignment} />
+                    </div>
 
-            </div>
+                    {Array.from(Array(3), (e, i) => {
+                        return <Row key={i}>
+                            {Array.from(Array(3), (e, j) => {
+                                return <Col key={j}><Character/></Col>
+                            })}
+                        </Row>
+                    })}
+                </CardBody>
+            </Card>
         )
     }
 }
@@ -24,7 +33,7 @@ const mapState = () => {
 
 const mapDispatch = dispatch => {
     return {
-        fetchBiographyById: id => dispatch(fetchBiographyById(id))
+        // fetchBiographyById: id => dispatch(fetchBiographyById(id))
     }
 }
 

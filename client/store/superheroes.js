@@ -3,6 +3,7 @@ import { SUPERHERO_URL, CORS_PROXY } from '../constants';
 
 const GET_SUPERHERO = 'GET_SUPERHERO';
 const GET_BIOGRAPHY = 'GET_BIOGRAPHY';
+const GET_IMAGE = 'GET_IMAGE';
 
 // Action creator
 export const profileAction = superhero => ({
@@ -12,6 +13,10 @@ export const profileAction = superhero => ({
 export const biographyAction = biography => ({
     type: GET_BIOGRAPHY,
     biography
+})
+export const imageAction = image => ({
+    type: GET_IMAGE,
+    image
 })
 
 // Thunk
@@ -27,6 +32,12 @@ export const fetchBiographyById = id => {
         dispatch(biographyAction(data));
     }
 }
+export const fetchImageById = id => {
+    return async dispatch => {
+        const { data } = await axios.get(`${CORS_PROXY}${SUPERHERO_URL}/${id}/image`);
+        dispatch(imageAction(data));
+    }
+}
 
 const superHeroReducer = (state = [], action) => {
     switch (action.type) {
@@ -34,6 +45,8 @@ const superHeroReducer = (state = [], action) => {
             return action.superhero;
         case GET_BIOGRAPHY:
             return action.biography;
+        case GET_IMAGE:
+            return action.image;
         default:
             return state;
     }
