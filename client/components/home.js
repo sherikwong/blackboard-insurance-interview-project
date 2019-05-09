@@ -9,13 +9,34 @@ class Home extends Component {
         super();
         this.state = {
             loaded: false,
-            loadPercentage: 20,
+            loadPercentage: 0,
         };
+    }
+
+    componentDidMount() {
+        console.log(this.state);
+        for (let i = 0; i <= 100; i++) {
+            window.setTimeout(() => {
+                this.currentLoadPercentage(i);
+            }, 30)
+        }
+    }
+
+    currentLoadPercentage(numLoaded) {
+        if (numLoaded === 100) {
+            this.setState({
+                loaded: true
+            });
+        } else {
+            this.setState({
+                loadPercentage: numLoaded
+            });
+        }
     }
 
     render() {
         const loadedContent = (
-            <div>
+            <div className="full-container">
                 <Header />
                 <div className="body">
                     <Row>
