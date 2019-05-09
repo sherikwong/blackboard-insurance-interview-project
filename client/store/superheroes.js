@@ -44,7 +44,7 @@ const superHeroReducer = (state = [], action) => {
         case GET_SUPERHERO:
             return action.superhero;
         case GET_BIOGRAPHY:
-            return action.biography;
+            return [...state, action.biography];
         case GET_IMAGE:
             return action.image;
         default:
