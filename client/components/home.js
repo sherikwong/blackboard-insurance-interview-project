@@ -21,7 +21,9 @@ class Home extends Component {
                 this.currentLoadPercentage(this.state.loadPercentage);
             }, 10);
         }
-        axios.post('/api/superheroes').then(res => console.log(res.data));
+        axios.get('/api/superheroes/2')
+            .then(res => console.log('Hello', res))
+            .catch(error => console.error(error));
     }
 
     currentLoadPercentage(numLoaded) {
