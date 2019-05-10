@@ -39,7 +39,6 @@ class InitialLoader extends Component {
 
     minimizeLoading() {
         this.setState({ continue: true });
-        console.log(this.state.continue);
         this.props.minimizeLoading();
     }
 

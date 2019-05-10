@@ -13,172 +13,191 @@ $theme-colors: ('primary': $primary,
 @import "~bootstrap/scss/bootstrap";
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .full-container {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 #app {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  @extend .center;
-  @extend .full-container;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    @extend .center;
+    @extend .full-container;
+    background-image: url('/background.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
-  background-image: url('/background.jpeg');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  height: 100%;
-  background-color: black;
+    font-family: 'Raleway', sans-serif;
+    height: 100%;
+    background-color: black;
 }
 
 .header {
-  width: 100%;
-
-  .logo {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10rem 0 3rem 0;
 
-    img {
-      content: url('/logo.png');
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10rem 0 3rem 0;
+
+        img {
+            content: url('/logo.png');
+        }
     }
-  }
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 label {
-  display: block;
+    display: block;
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+    display: inline-block;
+    margin: 1em;
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+    margin: 1em;
+    display: inline-block;
 }
 
 .card {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 .initial-loader-wrapper {
-  background-color: black;
-  @extend .center;
-  @extend .full-container;
-  height: 20rem;
-  width: calc(100% + 2rem);
-  margin: 2rem;
-  color: white;
-  padding: 1.5rem;
-  flex-direction: column;
-  transition: width 2s, height 2s, top 2s, right 2s, padding 2s, position 2s;
+    background-color: black;
+    @extend .center;
+    @extend .full-container;
+    height: 20rem;
+    width: calc(100% + 2rem);
+    margin: 2rem;
+    color: white;
+    padding: 1.5rem;
+    flex-direction: column;
+    transition: all 2s ease;
 
-  &.continue-anyways {
-    height: 7rem;
-    width: 15rem;
-    top: 0;
-    right: 0;
-    position: absolute;
-    // padding: .2rem;
+    &.continue-anyways {
+        height: 7rem;
+        width: 15rem;
+        top: 0;
+        right: 0;
+        position: absolute;
+        // padding: .2rem;
 
-    .progress-barr {
-      width: 10rem;
-      margin-bottom: 0
+        .progress-barr {
+            width: 10rem;
+            margin-bottom: 0
+        }
+
+        .loading {
+            // transform: translateY(20px);
+            opacity: 0;
+            height: 0;
+        }
+
+        .disappear {
+            opacity: 0;
+        }
     }
 
-    .loading {
-      // transform: translateY(20px);
-      opacity: 0;
-      height: 0;
+    .progress-barr {
+        width: 20rem;
+        height: 1rem;
+        transition: all 2s ease;
+        margin-bottom: .5rem;
     }
 
     .disappear {
-      opacity: 0;
+        transition: all 2s ease;
     }
-  }
-
-  .progress-barr {
-    width: 20rem;
-    height: 1rem;
-    transition: transform 2s, width 2s, margin 2s;
-    margin-bottom: .5rem;
-  }
-
-  .disappear {
-    transition: 2s;
-  }
 }
 
 .body-card {
-  @extend .card;
-  border: 2px solid black;
-  background-color: rgba(#ffffff, .8);
+    @extend .card;
+    border: 2px solid black;
+    background-color: rgba(#ffffff, .8);
 }
 
 .body {
-  margin: 0 5rem;
+    margin: 0 5rem;
 }
 
 .characters-body {
-  .row {
-    margin: 1rem 0;
-  }
+  transform: perspective(1) scaleZ(1) rotateY(0deg);
+  transition: transform 1s ease;
+    .row {
+        margin: 1rem 0;
+    }
+
+    &.flip {
+      transform: perspective(200rem) scaleZ(2) rotateY(180deg);
+      .characters-gird {
+        opacity: 0;
+        width: 0;
+      }
+    }
+    .characters-gird {
+      transition: opacity .5s ease width .5s ease;
+    }
 }
 
 .alignment-header {
-  width: 100%;
-  @extend .center;
-  margin-bottom: 2rem;
+    width: 100%;
+    @extend .center;
+    margin-bottom: 2rem;
 
-  .bad {
-    content: url('/villians.png');
-  }
+    .bad {
+        content: url('/villians.png');
+    }
 
-  .good {
-    content: url('/heroes.png');
-  }
+    .good {
+        content: url('/heroes.png');
+    }
 }
 
 img {
-  &.loading {
-    content: url('/loading.png');
-    transition: 2s;
-    transition-timing-function: ease-out;
-    // transform: translateY(0);
-    opacity: 1;
-  }
+    &.loading {
+        content: url('/loading.png');
+        transition: all 2s ease;
+        transition: all 2s ease;
+        // transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .character-card {
-  @extend .center;
-  transition: .2s;
+    @extend .center;
+    transition: all 2s ease;
+    @extend .text-truncate;
+    transform: scale(1, 1);
 
-  img {
-    // @extend .full-container;
-    width: 5rem;
-    height: 5rem;
-  }
+    img {
+        // @extend .full-container;
+        width: 100%;
+        height: inherit;
+    }
 
-  &:hover {
-    background-color: rgba(#000, .6);
-    color: white;
-  }
+    &:hover {
+        background-color: rgba(#000, .6);
+        color: white;
+        width: calc(100% + 1rem);
+        transform: scale(1.05, 1.05);
+        margin: -calc(15/2)px;
+    }
 }
