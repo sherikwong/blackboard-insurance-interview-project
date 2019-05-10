@@ -166,3 +166,19 @@ img {
     opacity: 1;
   }
 }
+
+.character-card {
+  @extend .center;
+  transition: .2s;
+
+  img {
+    // @extend .full-container;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  &:hover {
+    background-color: rgba(#000, .6);
+    color: white;
+  }
+}

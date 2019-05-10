@@ -5,13 +5,12 @@ import { Row, Col, Card, CardBody } from 'reactstrap';
 import { Character } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
-// eslint-disable-next-line react/prefer-stateless-function
-
 class Characters extends Component {
     constructor() {
         super();
-        // this.state = {
-        // };
+        this.state = {
+            grid: []
+        };
         this.fillInGrid = this.fillInGrid.bind(this);
     }
 
@@ -22,7 +21,23 @@ class Characters extends Component {
     fillInGrid() {
         this.props.fetchByAlignment(this.props.alignment).then(data => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
-            console.log('Props', this.props);
+            this.setState({
+                characters: this.props.characters
+            });
+
+            const grid = [];
+            let currentRow = [];
+            for (let i = 0; i < this.props.characters.length; i++) {
+                if (currentRow.length < 3) {
+                    currentRow.push(this.props.characters[i]);
+                } else {
+                    grid.push(currentRow);
+                    currentRow = [];
+                }
+            }
+            this.setState({
+                grid
+            });
         }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
@@ -33,23 +48,24 @@ class Characters extends Component {
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {Array.from(Array(3), (e, i) => {
+                    {this.state.grid.length && Array.from(Array(3), (e, i) => {
                         return <Row key={i}>
                             {Array.from(Array(3), (e, j) => {
-                                return <Col key={j}><Character id={2}/></Col>
+                                return <Col key={j}><Character character={this.state.grid[i][j]} /></Col>
                             })}
                         </Row>
                     })}
                 </CardBody>
             </Card>
         )
+
     }
 }
 
-const mapState = state => {
-    console.log('Mapping state to props', state);
+const mapState = (state, ownProps) => {
+    console.log(ownProps);
     return {
-        characters: state.characters
+        characters: state.characters.alignment && state.characters.alignment[ownProps.alignment]
     };
 }
 

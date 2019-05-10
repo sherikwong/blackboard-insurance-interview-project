@@ -14,10 +14,11 @@ class Character extends Component {
 
     render() {
         return (
-            <Card>
-                <CardBody>
-
-                </CardBody>
+            <Card className="character-card">
+                <img src={this.props.character.url} />
+                {/* <CardBody>
+                </CardBody> */}
+                    <div className="">{this.props.character['full-name']}</div>
             </Card>
         )
     }

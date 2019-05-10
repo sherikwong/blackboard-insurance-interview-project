@@ -1,8 +1,7 @@
 const router = require('express').Router();
-const Biography = require('../db/models/biography');
+const {BasicInfo} = require('../db/models');
 // const Images = require('../db/models/images');
 // const Powerstats = require('../db/models/powerstats');
-const pug = require('../db/pug')
 
 module.exports = router;
 
@@ -32,18 +31,14 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/all/:alignment', (req, res, next) => {
   console.log('Find characters by alignment:', req.params.alignment);
-  Biography.findAll({
+  BasicInfo.findAll({
     where: {
       alignment: {
         $eq: req.params.alignment
       }
     },
-    attributes: ['id', 'full-name', 'alignment']
+    // attributes: ['id', 'full-name', 'alignment', 'url']
   }).then(data => {
-    const arrayOfAllCharDetails = Object.values(data).map(each => each.dataValues);
-
-    
-    // console.log(pug, Object.values(data).map(each => each.dataValues));
     res.send(data);
   }).catch(error => console.error(error));
 })

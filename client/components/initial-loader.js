@@ -9,7 +9,7 @@ class InitialLoader extends Component {
     constructor() {
         super();
         this.state = {
-            continue: false
+            continue: true
         };
         this.loadAllCharactersIntoDB = this.loadAllCharactersIntoDB.bind(this);
         this.minimizeLoading = this.minimizeLoading.bind(this);
@@ -34,7 +34,7 @@ class InitialLoader extends Component {
             }
         }
 
-        addToDB(1);
+        // addToDB(1);
     }
 
     minimizeLoading() {

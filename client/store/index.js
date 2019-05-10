@@ -3,9 +3,9 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import superHeroReducer from './superheroes'
+import characters from './superheroes'
 
-const reducer = combineReducers({user, superHeroReducer})
+const reducer = combineReducers({user, characters})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

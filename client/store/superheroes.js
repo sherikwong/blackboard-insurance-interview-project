@@ -52,7 +52,7 @@ export const fetchByAlignment = alignment => {
     }
 }
 
-const superHeroReducer = (state = [], action) => {
+const charactersReducer = (state = [], action) => {
     switch (action.type) {
         case GET_SUPERHERO:
             return action.superhero;
@@ -72,4 +72,4 @@ const superHeroReducer = (state = [], action) => {
     }
 }
 
-export default superHeroReducer;
+export default charactersReducer;
