@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import { Character } from './index'
-import { fetchBiographyById } from '../store/superheroes'
+import { fetchByAlignment } from '../store/superheroes'
 
 // eslint-disable-next-line react/prefer-stateless-function
 
@@ -11,17 +11,8 @@ class Characters extends Component {
     constructor() {
         super();
         this.state = {
-            page: 1,
-            currentCharacterId: 1,
-            idGrid: null
-            // [
-            //     [1, 2, 3],
-            //     [4, 5, 6],
-            //     [7, 8, 9]
-            // ]
         };
         this.fillInGrid = this.fillInGrid.bind(this);
-        this.checkAlignment = this.getAndCheckAlignment.bind(this);
     }
 
     componentDidMount() {
@@ -29,16 +20,7 @@ class Characters extends Component {
     }
 
     fillInGrid() {
-        const newGrid = new Array(3).fill(new Array(3).fill(0));
-        newGrid.map((row, rowIndex) => {
-            row.map((column, columnIndex) => {
-                // this.getAndCheckAlignment(this.state.currentCharacterId);
-            });
-        })
-    }
-
-    getAndCheckAlignment(id) {
-        this.props.fetchBiographyById(id);
+        this.props.fetchByAlignment(this.props.alignment).then(data => console.log(data)).catch(error => console.error(error));
     }
 
     render() {
@@ -72,7 +54,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
     return {
-        fetchBiographyById: id => dispatch(fetchBiographyById(id))
+        fetchByAlignment: alignment => dispatch(fetchByAlignment(alignment))
     }
 }
 

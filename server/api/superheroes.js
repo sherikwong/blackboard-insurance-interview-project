@@ -8,9 +8,6 @@ module.exports = router;
 
 router.get('/:id', (req, res, next) => {
   Biography.findAll({
-    // include: [{
-    //   model: Images
-    // }],
     where: {
       id: {
         $eq: req.params.id
@@ -34,6 +31,15 @@ router.get('/:id', (req, res, next) => {
 
 // })
 
-// router.get('/alignment/:alignment', (req, res, next) => {
-
-// })
+router.get('/alignment/:alignment', (req, res, next) => {
+  console.log('Find characters by alignment:', req.params.alignment);
+  Biography.findAll({
+    where: {
+      alignment: {
+        $eq: req.params.alignment
+      }
+    }
+  }).then(characters => {
+    res.send(characters);
+  }).catch(error => console.error(error));
+})

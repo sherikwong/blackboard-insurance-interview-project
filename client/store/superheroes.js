@@ -4,6 +4,7 @@ import { SUPERHERO_URL, CORS_PROXY } from '../constants';
 const GET_SUPERHERO = 'GET_SUPERHERO';
 const GET_BIOGRAPHY = 'GET_BIOGRAPHY';
 const GET_IMAGE = 'GET_IMAGE';
+const GET_ALL_ALIGNMENT = 'GET_ALL_ALIGNMENT';
 
 // Action creator
 export const profileAction = superhero => ({
@@ -17,6 +18,10 @@ export const biographyAction = biography => ({
 export const imageAction = image => ({
     type: GET_IMAGE,
     image
+})
+export const alignmentAction = characters => ({
+    type: GET_ALL_ALIGNMENT,
+    characters
 })
 
 // Thunk
@@ -39,6 +44,13 @@ export const fetchImageById = id => {
     }
 }
 
+export const fetchByAlignment = alignment => {
+    return async dispatch => {
+        const { data } = await axios.get(`/api/superheroes/alignment/${alignment}`);
+        dispatch(alignmentAction(data));
+    }
+}
+
 const superHeroReducer = (state = [], action) => {
     switch (action.type) {
         case GET_SUPERHERO:
@@ -47,6 +59,8 @@ const superHeroReducer = (state = [], action) => {
             return [...state, action.biography];
         case GET_IMAGE:
             return action.image;
+        case GET_ALL_ALIGNMENT:
+            return action.characters;
         default:
             return state;
     }
