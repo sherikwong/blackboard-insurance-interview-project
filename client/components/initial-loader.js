@@ -9,9 +9,10 @@ class InitialLoader extends Component {
     constructor() {
         super();
         this.state = {
-
+            continue: false
         };
         this.loadAllCharactersIntoDB = this.loadAllCharactersIntoDB.bind(this);
+        this.minimizeLoading = this.minimizeLoading.bind(this);
     }
 
     componentDidMount() {
@@ -36,13 +37,19 @@ class InitialLoader extends Component {
         addToDB(1);
     }
 
+    minimizeLoading() {
+        this.setState({ continue: true });
+        console.log(this.state.continue);
+        this.props.minimizeLoading();
+    }
+
     render() {
         return (
-            <div className="initial-loader-wrapper flex-column text-white p-3">
+            <div className={`initial-loader-wrapper ${this.state.continue && 'continue-anyways'}`}>
                 <img className="loading mb-4" />
-                <Progress style={{ width: '20rem' }} color="primary" value={this.props.loadPercentage} className="mb-2" />
+                <Progress color="secondary" value={this.props.loadPercentage} className="mb-2 progress-barr" />
                 <span className="mb-2">This is going to take a while...</span>
-                <Button color="secondary">Continue Anyways</Button>
+                <Button color="secondary" onClick={this.minimizeLoading}>Continue Anyways</Button>
             </div>
         )
     }

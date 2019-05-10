@@ -12,7 +12,7 @@ class Home extends Component {
             loadPercentage: 0,
         };
         this.currentLoadPercentage = this.currentLoadPercentage.bind(this);
-        this.closeLoadScreen = this.closeLoadScreen.bind(this);
+        this.minimizeLoading = this.minimizeLoading.bind(this);
     }
 
     componentDidMount() {
@@ -21,7 +21,9 @@ class Home extends Component {
     currentLoadPercentage(numLoaded) {
         if (!this.state.loaded) {
             if (numLoaded === 100) {
-                this.closeLoadScreen();
+                this.setState({
+                    loaded: true
+                });
             } else {
                 this.setState({
                     loadPercentage: numLoaded + 1
@@ -30,10 +32,14 @@ class Home extends Component {
         }
     }
 
-    closeLoadScreen() {
-        this.setState = {
-            loaded: true
-        }
+    minimizeLoading(event) {
+        console.log('asofhiasf')
+        event.preventDefault();
+        setTimeout(() => {
+            this.setState({
+                loaded: true
+            });
+        }, 10000)
     }
 
     render() {
@@ -56,7 +62,7 @@ class Home extends Component {
 
         return (
             <div className="full-container center">
-                {this.state.loaded ? loadedContent : <InitialLoader loaded={this.state.loaded} loadPercentage={this.state.loadPercentage} currentLoadPercentage={this.currentLoadPercentage} closeLoadScreen={this.closeLoadScreen}/>}
+                {this.state.loaded ? loadedContent : <InitialLoader loaded={this.state.loaded} loadPercentage={this.state.loadPercentage} currentLoadPercentage={this.currentLoadPercentage} minimizeLoading={this.minimizeLoading} />}
             </div>
         )
     }
