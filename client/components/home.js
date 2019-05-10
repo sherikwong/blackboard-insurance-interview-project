@@ -8,28 +8,29 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            loaded: false,
+            loaded: true,
             loadPercentage: 0,
         };
     }
 
     componentDidMount() {
-        console.log(this.state);
-        for (let i = 0; i <= 100; i++) {
-            window.setTimeout(() => {
-                this.currentLoadPercentage(i);
-            }, 30)
+        if (this.state.loadPercentage <= 100 && !this.state.loaded) {
+            // setInterval(() => {
+            //     this.currentLoadPercentage(this.state.loadPercentage);
+            // }, 10);
         }
     }
 
     currentLoadPercentage(numLoaded) {
+        console.log(numLoaded);
         if (numLoaded === 100) {
             this.setState({
                 loaded: true
             });
         } else {
             this.setState({
-                loadPercentage: numLoaded
+                loadPercentage: numLoaded + 1
+                // loadPercentage: numLoaded
             });
         }
     }
