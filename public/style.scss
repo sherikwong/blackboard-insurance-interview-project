@@ -89,28 +89,41 @@ form div {
   color: white;
   padding: 1.5rem;
   flex-direction: column;
-  transition: width 2s, height 2s, top 2s, right 2s, padding 2s;
+  transition: width 2s, height 2s, top 2s, right 2s, padding 2s, position 2s;
 
   &.continue-anyways {
     height: 7rem;
     width: 15rem;
     top: 0;
     right: 0;
-    padding: 1rem;
+    position: absolute;
+    // padding: .2rem;
 
     .progress-barr {
       width: 10rem;
+      margin-bottom: 0
     }
 
     .loading {
       // transform: translateY(20px);
+      opacity: 0;
+      height: 0;
+    }
+
+    .disappear {
       opacity: 0;
     }
   }
 
   .progress-barr {
     width: 20rem;
-    transition: width 2s;
+    height: 1rem;
+    transition: transform 2s, width 2s, margin 2s;
+    margin-bottom: .5rem;
+  }
+
+  .disappear {
+    transition: 2s;
   }
 }
 

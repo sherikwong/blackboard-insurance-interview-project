@@ -47,9 +47,9 @@ class InitialLoader extends Component {
         return (
             <div className={`initial-loader-wrapper ${this.state.continue && 'continue-anyways'}`}>
                 <img className="loading mb-4" />
-                <Progress color="secondary" value={this.props.loadPercentage} className="mb-2 progress-barr" />
-                <span className="mb-2">This is going to take a while...</span>
-                <Button color="secondary" onClick={this.minimizeLoading}>Continue Anyways</Button>
+                <Progress color="secondary" value={this.props.loadPercentage} className="progress-barr" />
+                <span className="mb-2 disappear">This is going to take a while...</span>
+                <Button color="secondary" onClick={this.minimizeLoading} className="disappear">Continue Anyways</Button>
             </div>
         )
     }
