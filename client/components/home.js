@@ -3,27 +3,22 @@ import Header from './header';
 import { Characters, InitialLoader } from './index'
 import { Row, Col } from 'reactstrap';
 import { Alignments } from '../constants';
-import axios from 'axios';
-// import run from '../../server/api/superheroes'
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            loaded: true,
+            loaded: false,
             loadPercentage: 0,
         };
     }
 
     componentDidMount() {
-        if (this.state.loadPercentage <= 100 && !this.state.loaded) {
-            setInterval(() => {
-                this.currentLoadPercentage(this.state.loadPercentage);
-            }, 10);
-        }
-        axios.get('/api/superheroes/2')
-            .then(res => console.log('Hello', res))
-            .catch(error => console.error(error));
+        // if (this.state.loadPercentage <= 100 && !this.state.loaded) {
+        //     setInterval(() => {
+        //         this.currentLoadPercentage(this.state.loadPercentage);
+        //     }, 10);
+        // }
     }
 
     currentLoadPercentage(numLoaded) {
@@ -59,7 +54,7 @@ class Home extends Component {
 
         return (
             <div className="full-container center">
-                {this.state.loaded ? loadedContent : <InitialLoader loadPercentage={this.state.loadPercentage} />}
+                {this.state.loaded ? loadedContent : <InitialLoader loadPercentage={this.state.loadPercentage} currentLoadPercentage={this.currentLoadPercentage.bind(this)}/>}
             </div>
         )
     }
