@@ -10,7 +10,6 @@ class Character extends Component {
     // }
 
     componentDidMount() {
-        this.props.fetchBiographyById(this.props.id);
     }
 
     render() {

@@ -19,9 +19,10 @@ export const imageAction = image => ({
     type: GET_IMAGE,
     image
 })
-export const alignmentAction = characters => ({
+export const alignmentAction = (characters, alignment) => ({
     type: GET_ALL_ALIGNMENT,
-    characters
+    characters,
+    alignment
 })
 
 // Thunk
@@ -46,8 +47,8 @@ export const fetchImageById = id => {
 
 export const fetchByAlignment = alignment => {
     return async dispatch => {
-        const { data } = await axios.get(`/api/superheroes/alignment/${alignment}`);
-        dispatch(alignmentAction(data));
+        const { data } = await axios.get(`/api/superheroes/all/${alignment}`);
+        dispatch(alignmentAction(data, alignment));
     }
 }
 
@@ -60,7 +61,12 @@ const superHeroReducer = (state = [], action) => {
         case GET_IMAGE:
             return action.image;
         case GET_ALL_ALIGNMENT:
-            return action.characters;
+            return {
+                alignment: {
+                    ...state.alignment,
+                    [action.alignment]: action.characters
+                }
+            };
         default:
             return state;
     }

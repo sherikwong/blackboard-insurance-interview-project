@@ -10,8 +10,8 @@ import { fetchByAlignment } from '../store/superheroes'
 class Characters extends Component {
     constructor() {
         super();
-        this.state = {
-        };
+        // this.state = {
+        // };
         this.fillInGrid = this.fillInGrid.bind(this);
     }
 
@@ -20,7 +20,10 @@ class Characters extends Component {
     }
 
     fillInGrid() {
-        this.props.fetchByAlignment(this.props.alignment).then(data => console.log(data)).catch(error => console.error(error));
+        this.props.fetchByAlignment(this.props.alignment).then(data => {
+            console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
+            console.log('Props', this.props);
+        }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
     render() {
@@ -30,13 +33,10 @@ class Characters extends Component {
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-
-                    {this.state.idGrid && this.state.idGrid.length && this.state.idGrid.map((row, rowIndex) => {
-                        // eslint-disable-next-line react/no-array-index-key
-                        return <Row key={rowIndex}>
-                            {row.map((column, columnIndex) => {
-                                // eslint-disable-next-line react/no-array-index-key
-                                return <Col key={columnIndex}><Character id={this.state.idGrid[rowIndex][columnIndex]} page={this.state.page} /></Col>
+                    {Array.from(Array(3), (e, i) => {
+                        return <Row key={i}>
+                            {Array.from(Array(3), (e, j) => {
+                                return <Col key={j}><Character id={2}/></Col>
                             })}
                         </Row>
                     })}
@@ -47,8 +47,9 @@ class Characters extends Component {
 }
 
 const mapState = state => {
+    console.log('Mapping state to props', state);
     return {
-        biography: state.biography
+        characters: state.characters
     };
 }
 
