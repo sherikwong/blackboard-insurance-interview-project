@@ -8,9 +8,11 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            loaded: true,
+            loaded: false,
             loadPercentage: 0,
         };
+        this.currentLoadPercentage = this.currentLoadPercentage.bind(this);
+        this.closeLoadScreen = this.closeLoadScreen.bind(this);
     }
 
     componentDidMount() {
@@ -19,14 +21,18 @@ class Home extends Component {
     currentLoadPercentage(numLoaded) {
         if (!this.state.loaded) {
             if (numLoaded === 100) {
-                this.setState({
-                    loaded: true
-                });
+                this.closeLoadScreen();
             } else {
                 this.setState({
                     loadPercentage: numLoaded + 1
                 });
             }
+        }
+    }
+
+    closeLoadScreen() {
+        this.setState = {
+            loaded: true
         }
     }
 
@@ -50,7 +56,7 @@ class Home extends Component {
 
         return (
             <div className="full-container center">
-                {this.state.loaded ? loadedContent : <InitialLoader loaded={this.state.loaded} loadPercentage={this.state.loadPercentage} currentLoadPercentage={this.currentLoadPercentage.bind(this)} />}
+                {this.state.loaded ? loadedContent : <InitialLoader loaded={this.state.loaded} loadPercentage={this.state.loadPercentage} currentLoadPercentage={this.currentLoadPercentage} closeLoadScreen={this.closeLoadScreen}/>}
             </div>
         )
     }

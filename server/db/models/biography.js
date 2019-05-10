@@ -4,7 +4,7 @@ const { basicModel, modelTypes } = require('./util')
 const Sequelize = require('sequelize');
 const {Alignments} = require('../../../client/constants');
 
-const Biography = db.define('character', {
+const Biography = db.define('biography', {
   'full-name': basicModel(modelTypes.String),
   'alter-egos': basicModel(modelTypes.String),
   aliases: {

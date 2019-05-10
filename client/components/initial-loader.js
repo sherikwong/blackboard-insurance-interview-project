@@ -33,7 +33,7 @@ class InitialLoader extends Component {
             }
         }
 
-        // addToDB(1);
+        addToDB(1);
     }
 
     render() {

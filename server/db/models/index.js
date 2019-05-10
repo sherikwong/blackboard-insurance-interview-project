@@ -6,8 +6,10 @@ const BasicInfo = require('./basic-info');
 
 BasicInfo.hasOne(Biography);
 Biography.belongsTo(BasicInfo);
+
 Biography.hasOne(Images);
 Images.belongsTo(Biography)
+
 Biography.hasOne(Powerstats);
 Powerstats.belongsTo(Biography);
 

@@ -4,7 +4,7 @@ const { basicModel, modelTypes } = require('./util')
 const Sequelize = require('sequelize');
 const {Alignments} = require('../../../client/constants');
 
-const BasicInfo = db.define('character', {
+const BasicInfo = db.define('basic-info', {
   'full-name': basicModel(modelTypes.String),
   'url': basicModel(modelTypes.String),
   alignment: Sequelize.ENUM(Alignments.Good, Alignments.Bad),
