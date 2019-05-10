@@ -14,15 +14,9 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        // if (this.state.loadPercentage <= 100 && !this.state.loaded) {
-        //     setInterval(() => {
-        //         this.currentLoadPercentage(this.state.loadPercentage);
-        //     }, 10);
-        // }
     }
 
     currentLoadPercentage(numLoaded) {
-        console.log(numLoaded);
         if (numLoaded === 100) {
             this.setState({
                 loaded: true

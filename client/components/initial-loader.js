@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Progress } from 'reactstrap';
+import { Progress, Button } from 'reactstrap';
 import axios from 'axios';
 import { NUMBER_OF_SUPERHEROES } from '../constants';
 
@@ -24,9 +24,9 @@ class InitialLoader extends Component {
         const addToDB = characterId => {
             if (characterId <= NUMBER_OF_SUPERHEROES) {
                 axios.get(`/api/superheroes-api/${characterId}`).then(response => {
-                    this.props.currentLoadPercentage(Math.ceil(characterId / 3));
-                    axios.get(`/api/superheroes/${characterId}`).then(response => console.log('aAAAAaAAAAaAAAAaAAAAaAAAAaAAAAaAAAAaAAAA', response.data)).catch(error => console.error(error));
-                    return addToDB(characterId + 1);
+                    const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
+                    this.props.currentLoadPercentage(completedId);
+                    return addToDB(response.data + 1);
                 }).catch(error => {
                     console.error(error);
                 })
@@ -38,9 +38,11 @@ class InitialLoader extends Component {
 
     render() {
         return (
-            <div className="initial-loader-wrapper flex-column">
+            <div className="initial-loader-wrapper flex-column text-white p-3">
                 <img className="loading mb-4" />
-                <Progress style={{ width: '20rem' }} color="primary" value={this.props.loadPercentage} />
+                <Progress style={{ width: '20rem' }} color="primary" value={this.props.loadPercentage} className="mb-2" />
+                <span className="mb-2">This is going to take a while...</span>
+                <Button color="secondary">Continue Anyways</Button>
             </div>
         )
     }

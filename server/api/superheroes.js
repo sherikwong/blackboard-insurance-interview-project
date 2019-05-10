@@ -1,20 +1,21 @@
 const router = require('express').Router();
 const Biography = require('../db/models/biography');
-const Images = require('../db/models/images');
-const Powerstats = require('../db/models/powerstats');
-const pug = require('../db/pug')
+// const Images = require('../db/models/images');
+// const Powerstats = require('../db/models/powerstats');
+// const pug = require('../db/pug')
 
 module.exports = router;
 
 router.get('/:id', (req, res, next) => {
   Biography.findAll({
-    include: [{
-      model: Images
-    }],
+    // include: [{
+    //   model: Images
+    // }],
     where: {
       id: {
         $eq: req.params.id
-      }
+      },
+
     }
   }).then(allInfo => {
     res.send(allInfo);

@@ -1,4 +1,5 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 
 $primary: rgb(9, 125, 167);
 $secondary: #EC770F;
@@ -8,6 +9,8 @@ $theme-colors: ('primary': $primary,
 'secondary': $secondary,
 'danger': $danger,
 );
+
+@import "~bootstrap/scss/bootstrap";
 
 .center {
     display: flex;
