@@ -3,6 +3,8 @@ import Header from './header';
 import { Characters, InitialLoader } from './index'
 import { Row, Col } from 'reactstrap';
 import { Alignments } from '../constants';
+import axios from 'axios';
+// import run from '../../server/api/superheroes'
 
 class Home extends Component {
     constructor() {
@@ -15,10 +17,11 @@ class Home extends Component {
 
     componentDidMount() {
         if (this.state.loadPercentage <= 100 && !this.state.loaded) {
-            // setInterval(() => {
-            //     this.currentLoadPercentage(this.state.loadPercentage);
-            // }, 10);
+            setInterval(() => {
+                this.currentLoadPercentage(this.state.loadPercentage);
+            }, 10);
         }
+        axios.post('/api/superheroes').then(res => console.log(res.data));
     }
 
     currentLoadPercentage(numLoaded) {
@@ -30,7 +33,6 @@ class Home extends Component {
         } else {
             this.setState({
                 loadPercentage: numLoaded + 1
-                // loadPercentage: numLoaded
             });
         }
     }
