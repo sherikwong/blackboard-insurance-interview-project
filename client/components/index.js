@@ -12,8 +12,5 @@ export {default as Character} from './character'
 export {default as Characters} from './characters'
 export {default as InitialLoader} from './initial-loader'
 export {default as ChosenCharacter} from './chosen-character'
-<<<<<<< HEAD
-export {default as Search} from './search'
+// export {default as Search} from './search'
 export {default as Admin} from './admin-controls'
-=======
->>>>>>> parent of 87603a9... Worked on flip and added search component

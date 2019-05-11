@@ -1,12 +1,9 @@
 const router = require('express').Router();
 const { SUPERHERO_URL } = require('../../client/constants');
 const axios = require('axios');
-const Biography = require('../db/models/biography');
-const Images = require('../db/models/images');
 const Powerstats = require('../db/models/powerstats');
 const BasicInfo = require('../db/models/basic-info');
-const { pug, fail, success } = require('../db/ascii')
-const camelcase = require('camelcase');
+const { fail, success } = require('../db/ascii')
 
 const errorBox = (string) => {
   let finalString = '';
@@ -24,7 +21,7 @@ const successLogger = (string) => {
   console.log(finalString);
 }
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', (req) => {
   console.group(`Running ${SUPERHERO_URL}/${req.params.id}`)
   axios.get(`${SUPERHERO_URL}/${req.params.id}`)
     .then(response => {

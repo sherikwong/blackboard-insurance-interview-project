@@ -1,32 +1,18 @@
 const router = require('express').Router();
 const { BasicInfo } = require('../db/models');
-// const Images = require('../db/models/images');
-// const Powerstats = require('../db/models/powerstats');
 
 module.exports = router;
 
-router.get('/:id', (req, res, next) => {
-  Biography.findAll({
-    where: {
-      id: {
-        $eq: req.params.id
-      },
-    }
-  }).then(allInfo => {
-    res.send(allInfo);
-  }).catch(error => console.error(error));
-})
-
-// router.get('/:id/biography', (req, res, next) => {
-
-// })
-
-// router.get('/:id/image', (req, res, next) => {
-
-// })
-
-// router.get('/:id/powerstats', (req, res, next) => {
-
+// router.get('/:id', (req, res, next) => {
+//   Biography.findAll({
+//     where: {
+//       id: {
+//         $eq: req.params.id
+//       },
+//     }
+//   }).then(allInfo => {
+//     res.send(allInfo);
+//   }).catch(error => console.error(error));
 // })
 
 router.get('/alignment/:alignment', (req, res, next) => {
@@ -43,15 +29,15 @@ router.get('/alignment/:alignment', (req, res, next) => {
   }).catch(error => console.error(error));
 })
 
-router.get('/name/:substring', (req, res, next) => {
-  BasicInfo.findAll({
-    where: {
-      ['full-name']: {
-        $eq: req.params.alignment
-      }
-    },
-    // attributes: ['id', 'full-name', 'alignment', 'url']
-  }).then(data => {
-    res.send(data);
-  }).catch(error => console.error(error));
-})
+// router.get('/name/:substring', (req, res, next) => {
+//   BasicInfo.findAll({
+//     where: {
+//       ['full-name']: {
+//         $eq: req.params.alignment
+//       }
+//     },
+//     // attributes: ['id', 'full-name', 'alignment', 'url']
+//   }).then(data => {
+//     res.send(data);
+//   }).catch(error => console.error(error));
+// })

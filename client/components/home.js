@@ -8,7 +8,7 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            loaded: false,
+            loaded: true,
             loadPercentage: 0,
         };
         this.currentLoadPercentage = this.currentLoadPercentage.bind(this);
