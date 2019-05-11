@@ -10,12 +10,12 @@ class ChosenCharacter extends Component {
     }
 
     componentDidMount() {
+        this.getStats();
     }
 
     getStats() {
-        this.props.fetchStats(1)
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+        this.props.fetchStats(this.props.character.id);
+        console.log(this.props);
     }
 
     render() {

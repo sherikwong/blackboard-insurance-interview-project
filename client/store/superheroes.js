@@ -24,7 +24,7 @@ export const statsAction = (stats) => ({
 export const fetchStats = characterId => {
     return async dispatch => {
         const { data } = await axios.get(`/api/characters/${characterId}/stats`);
-        dispatch(alignmentAction(data, characterId));
+        dispatch(statsAction(data, characterId));
     }
 }
 
@@ -38,9 +38,9 @@ const charactersReducer = (state = [], action) => {
                 }
             };
         case GET_STATS:
-        return action.stats;
+            return action.stats;
         case FILTER_CHAR:
-            return {...state, filtered: action.filtered[action.alignment]}
+            return { ...state, filtered: action.filtered[action.alignment] }
         default:
             return state;
     }

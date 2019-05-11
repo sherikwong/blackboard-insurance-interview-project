@@ -21,7 +21,7 @@ const successLogger = (string) => {
   console.log(finalString);
 }
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   console.group(`Running ${SUPERHERO_URL}/${req.params.id}`)
   axios.get(`${SUPERHERO_URL}/${req.params.id}`)
     .then(response => {
@@ -31,17 +31,24 @@ router.get('/:id', (req, res) => {
       Character.create({
         fullName: fullProfile.biography['full-name'],
         url: fullProfile.image.url,
-        alignment: fullProfile.biography.alignment,
+        alignment: fullProfile.biography.alignment
       }).then(characterResponse => {
-        console.log(characterResponse);
-        // Powerstats.create({
-        //   ...fullProfile.powerstats,
-        //   characterId: characterResponse.dataValue.id
-        // }).catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
-        res.send(characterResponse);
-      }).catch(error => errorBox(`Problem adding to Character table. ERROR: ${error}`));
-      // res.send(req.params.id);
-    }).catch(error => errorBox(`Problem getting data from Superhero API. ERROR: ${error}`));
+        Powerstats.create({
+          ...fullProfile.powerstats,
+          characterId: characterResponse.id
+        }).catch(error => {
+          errorBox(`Problem adding to PowerStats table. ERROR: ${error}`);
+          next(error)
+        });
+      }).catch(error => {
+        errorBox(`Problem adding to Character table. ERROR: ${error}`);
+        next(error)
+      });
+      res.send(req.params.id);
+    }).catch(error => {
+      errorBox(`Problem getting data from Superhero API. ERROR: ${error}`);
+      next(error)
+    });
   console.groupEnd();
 })
 
