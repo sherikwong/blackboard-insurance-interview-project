@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
+import { Row, Col, Card, CardBody, CardFooter, Button } from 'reactstrap';
 import { Character, ChosenCharacter, Search, Pagination } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
@@ -14,6 +14,7 @@ class Characters extends Component {
         };
         this.fillInGrid = this.fillInGrid.bind(this);
         this.chooseCharacter = this.chooseCharacter.bind(this);
+        this.spitOutReducer = this.spitOutReducer.bind(this);
     }
 
     componentDidMount() {
@@ -45,6 +46,10 @@ class Characters extends Component {
         });
     }
 
+    spitOutReducer() {
+        console.log(this.props);
+    }
+
     render() {
         const chosenCharacter = (
             <CardBody>
@@ -66,6 +71,7 @@ class Characters extends Component {
 
         return (
             <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
+            <Button onClick={this.spitOutReducer}>Spit</Button>
                 <CardBody className="characters-gird">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />

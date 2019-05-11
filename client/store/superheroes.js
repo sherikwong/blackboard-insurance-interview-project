@@ -9,10 +9,10 @@ export const alignmentAction = (characters, alignment) => ({
     alignment
 })
 
-export const filterAction = (characters, alignment) => ({
+export const filterAction = (filtered, alignment) => ({
     type: FILTER_CHAR,
     filtered: {
-        [alignment]: characters
+        [alignment]: filtered
     }
 })
 
@@ -40,12 +40,7 @@ const charactersReducer = (state = [], action) => {
                 }
             };
         case FILTER_CHAR:
-            return {
-                filtered: {
-                    ...state.filtered,
-                    [action.alignment]: action.characters
-                }
-            }
+            return {...state, filtered: action.filtered[action.alignment]}
         default:
             return state;
     }
