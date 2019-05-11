@@ -17,15 +17,15 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        this.fillInGrid();
+        // this.fillInGrid();
     }
 
     fillInGrid() {
         this.props.fetchByAlignment(this.props.alignment).then(data => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
-            this.setState({
-                characters: this.props.characters
-            });
+            // this.setState({
+            //     characters: this.props.characters
+            // });
 
             const grid = [];
             let currentRow = [];

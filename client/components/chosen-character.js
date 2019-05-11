@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchBiographyById, fetchImageById } from '../store/superheroes';
-import { Row, Col, Card, CardBody } from 'reactstrap';
-import CardFooter from 'reactstrap/lib/CardFooter';
+import { Card } from 'reactstrap';
 
 class ChosenCharacter extends Component {
     constructor() {
@@ -28,10 +26,8 @@ const mapState = () => {
     return null;
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = () => {
     return {
-        fetchBiographyById: id => dispatch(fetchBiographyById(id)),
-        // fetchImageById: id => dispatch(fetchImageById(id)),
     }
 }
 

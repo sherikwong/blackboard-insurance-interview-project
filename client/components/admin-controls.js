@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap';
 import axios from 'axios';
+import { NUMBER_OF_SUPERHEROES } from '../constants'
+import { success, fail } from '../../server/db/ascii'
 
 class Admin extends Component {
     constructor() {
@@ -15,18 +17,24 @@ class Admin extends Component {
     }
 
     loadDB() {
-        const addToDB = (characterId, max) => {
-            console.log('Superhero #', characterId);
-            if (characterId <= max) {
-                axios.get(`/api/superheroes-api/${characterId}`).then(response => {
-                    return addToDB(response.data + 1);
-                }).catch(error => {
-                    console.error(error);
+        const addToDB = (minId, maxId) => {
+            if () {
+                
+            }
+            const apiRequest = (id) => {
+                axios.get(`/api/superheroes-api/${id}`).then(() => {
+                    return addToDB(id + 1);
                 })
             }
+
+            axios.all([apiRequest(minId, maxId / 2), apiRequest((maxId / 2) + 1, maxId)])
+                .catch(error => {
+                    console.log(fail)
+                    console.error(error);
+                });
         }
 
-        addToDB(1, 20);
+        addToDB(1, NUMBER_OF_SUPERHEROES);
     }
 
     render() {

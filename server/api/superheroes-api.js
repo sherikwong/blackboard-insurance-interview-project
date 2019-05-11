@@ -21,7 +21,7 @@ const successLogger = (string) => {
   console.log(finalString);
 }
 
-router.get('/:id', (req) => {
+router.get('/:id', (res, req) => {
   console.group(`Running ${SUPERHERO_URL}/${req.params.id}`)
   axios.get(`${SUPERHERO_URL}/${req.params.id}`)
     .then(response => {
@@ -29,16 +29,15 @@ router.get('/:id', (req) => {
       const fullProfile = response.data;
 
       BasicInfo.create({
-        fullName: fullProfile.biography.fullName,
+        fullName: fullProfile.biography['full-name'],
         url: fullProfile.image.url,
         alignment: fullProfile.biography.alignment,
-      }).then(() => successLogger('Created basic info document'))
-        .catch(error => errorBox(`Problem adding to BasicInfo table. ERROR: ${error}`));
+      }).catch(error => errorBox(`Problem adding to BasicInfo table. ERROR: ${error}`));
 
-      Powerstats.create(fullProfile.powerstats).then(() => {
-        successLogger('Created powerstats');
-      }).catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
+      Powerstats.create(fullProfile.powerstats)
+        .catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
 
+      res.send(req.params.id);
     }).catch(error => errorBox(`Problem getting data from Superhero API. ERROR: ${error}`));
   console.groupEnd();
 })

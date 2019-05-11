@@ -38,7 +38,6 @@
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "bootstrap": "^4.3.1",
-    "camelcase": "^5.3.1",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "download": "^7.1.0",

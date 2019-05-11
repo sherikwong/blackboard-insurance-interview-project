@@ -3,18 +3,6 @@ const { BasicInfo } = require('../db/models');
 
 module.exports = router;
 
-// router.get('/:id', (req, res, next) => {
-//   Biography.findAll({
-//     where: {
-//       id: {
-//         $eq: req.params.id
-//       },
-//     }
-//   }).then(allInfo => {
-//     res.send(allInfo);
-//   }).catch(error => console.error(error));
-// })
-
 router.get('/alignment/:alignment', (req, res, next) => {
   console.log('Find characters by alignment:', req.params.alignment);
   BasicInfo.findAll({

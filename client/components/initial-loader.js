@@ -56,13 +56,11 @@ class InitialLoader extends Component {
 
 const mapState = state => {
     return {
-        // biography: state.biography
     };
 }
 
 const mapDispatch = dispatch => {
     return {
-        // fetchBiographyById: id => dispatch(fetchBiographyById(id))
     }
 }
 
