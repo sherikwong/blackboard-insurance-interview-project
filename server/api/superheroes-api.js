@@ -32,12 +32,15 @@ router.get('/:id', (req, res) => {
         fullName: fullProfile.biography['full-name'],
         url: fullProfile.image.url,
         alignment: fullProfile.biography.alignment,
+      }).then(characterResponse => {
+        console.log(characterResponse);
+        // Powerstats.create({
+        //   ...fullProfile.powerstats,
+        //   characterId: characterResponse.dataValue.id
+        // }).catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
+        res.send(characterResponse);
       }).catch(error => errorBox(`Problem adding to Character table. ERROR: ${error}`));
-
-      Powerstats.create(fullProfile.powerstats)
-        .catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
-
-      res.send(req.params.id);
+      // res.send(req.params.id);
     }).catch(error => errorBox(`Problem getting data from Superhero API. ERROR: ${error}`));
   console.groupEnd();
 })

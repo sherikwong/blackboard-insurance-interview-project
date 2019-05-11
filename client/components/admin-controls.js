@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap';
 import axios from 'axios';
 import { NUMBER_OF_SUPERHEROES } from '../constants'
-import { fail } from '../../server/db/ascii'
 
 class Admin extends Component {
     constructor() {
@@ -17,21 +16,33 @@ class Admin extends Component {
     }
 
     loadDB() {
-        const addToDB = (minId, maxId) => {
-            const apiRequest = (id) => {
-                axios.get(`/api/superheroes-api/${id}`).then(() => {
-                    return addToDB(id + 1);
+        // const addToDB = (characterId) => {
+        //     if (characterId <= NUMBER_OF_SUPERHEROES) {
+        //         axios.get(`/api/superheroes-api/${characterId}`).then(response => {
+        //             // const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
+        //             this.props.currentLoadPercentage(characterId);
+        //             return addToDB(response.data + 1);
+        //         }).catch(error => {
+        //             console.error(error);
+        //         })
+        //     }
+        // }
+
+        // addToDB(1);
+
+        const addToDB = (characterId) => {
+            if (characterId <= NUMBER_OF_SUPERHEROES) {
+                axios.get(`/api/superheroes-api/${characterId}`).then(response => {
+                    // const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
+                    this.props.currentLoadPercentage(characterId);
+                    return addToDB(response.data + 1);
+                }).catch(error => {
+                    console.error(error);
                 })
             }
-
-            axios.all([apiRequest(minId, maxId / 2), apiRequest((maxId / 2) + 1, maxId)])
-                .catch(error => {
-                    console.log(fail)
-                    console.error(error);
-                });
         }
 
-        addToDB(1, NUMBER_OF_SUPERHEROES);
+        addToDB(1);
     }
 
     render() {

@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card } from 'reactstrap';
+import { fetchStats } from '../../../store/superheroes';
 
 class ChosenCharacter extends Component {
-    // constructor() {
-    //     super();
-    // }
+    constructor() {
+        super();
+    }
 
     componentDidMount() {
+    }
+
+    getStats() {
+        this.props.fetchStats(1)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
     }
 
     render() {
@@ -22,12 +29,15 @@ class ChosenCharacter extends Component {
     }
 }
 
-const mapState = () => {
-    return null;
+const mapState = (state, ownProps) => {
+    return {
+        stats: state
+    };
 }
 
-const mapDispatch = () => {
+const mapDispatch = dispatch => {
     return {
+        fetchStats: id => dispatch(fetchStats(id))
     }
 }
 

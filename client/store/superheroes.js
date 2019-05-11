@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GET_ALL_ALIGNMENT = 'GET_ALL_ALIGNMENT';
+const GET_STATS = 'GET_STATS';
 const FILTER_CHAR = 'FILTER_CHAR';
 
 export const alignmentAction = (characters, alignment) => ({
@@ -9,24 +10,21 @@ export const alignmentAction = (characters, alignment) => ({
     alignment
 })
 
-export const filterAction = (filtered, alignment) => ({
-    type: FILTER_CHAR,
-    filtered: {
-        [alignment]: filtered
-    }
-})
-
 export const fetchByAlignment = alignment => {
     return async dispatch => {
-        const { data } = await axios.get(`/api/superheroes/alignment/${alignment}`);
+        const { data } = await axios.get(`/api/characters/alignment/${alignment}`);
         dispatch(alignmentAction(data, alignment));
     }
 }
+export const statsAction = (stats) => ({
+    type: GET_STATS,
+    stats,
+})
 
-export const filterBySubstring = (substring, alignment, allCharOfAlignment) => {
-    return dispatch => {
-        const filtered = allCharOfAlignment.filter(char => char.fullName.toLowerCase().includes(substring));
-        dispatch(filterAction(filtered, alignment));
+export const fetchStats = characterId => {
+    return async dispatch => {
+        const { data } = await axios.get(`/api/characters/${characterId}/stats`);
+        dispatch(alignmentAction(data, characterId));
     }
 }
 
@@ -39,6 +37,8 @@ const charactersReducer = (state = [], action) => {
                     [action.alignment]: action.characters
                 }
             };
+        case GET_STATS:
+        return action.stats;
         case FILTER_CHAR:
             return {...state, filtered: action.filtered[action.alignment]}
         default:

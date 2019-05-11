@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Character } = require('../db/models');
+const { Character, Powerstats } = require('../db/models');
 
 module.exports = router;
 
@@ -20,15 +20,8 @@ router.get('/alignment/:alignment', (req, res, next) => {
   }).catch(error => console.error(error));
 })
 
-// router.get('/name/:substring', (req, res, next) => {
-//   Character.findAll({
-//     where: {
-//       ['full-name']: {
-//         $eq: req.params.alignment
-//       }
-//     },
-//     // attributes: ['id', 'full-name', 'alignment', 'url']
-//   }).then(data => {
-//     res.send(data);
-//   }).catch(error => console.error(error));
-// })
+router.get('/:id/stats', (req, res, next) => {
+  Powerstats.findById(req.params.id).then(data => {
+    res.send(data);
+  }).catch(error => console.error(error));
+})

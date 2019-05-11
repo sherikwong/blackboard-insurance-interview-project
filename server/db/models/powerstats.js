@@ -9,13 +9,14 @@ const Powerstats = db.define('powerstats', {
   durability: basicModel(modelTypes.String),
   power: basicModel(modelTypes.String),
   combat: basicModel(modelTypes.String),
-  characterId: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: 'character',
-      key: 'id'
-    }
-  }
+  // characterId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: 'character',
+  //     key: 'id'
+  //   }
+  // }
+  // characterId: basicModel(modelTypes.Integer, true)
 });
 
 module.exports = Powerstats;
