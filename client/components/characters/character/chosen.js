@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStats } from '../../../store/superheroes';
-import { InputGroup, InputGroupText, Button, InputGroupAddon, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { InputGroup, InputGroupText, InputGroupAddon, Row, Col } from 'reactstrap';
 
 class ChosenCharacter extends Component {
     componentDidMount() {
@@ -27,7 +26,7 @@ class ChosenCharacter extends Component {
         const values = Object.values(fieldsToView)
 
         const groupField = (key, value) => (
-            <InputGroup key={key}>
+            <InputGroup key={key} className="mb-1">
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>{key}</InputGroupText>
                 </InputGroupAddon>
@@ -38,11 +37,6 @@ class ChosenCharacter extends Component {
         return (
             <div className="chosen-character-container">
                 <div className="chosen-character-image" style={{ backgroundImage: `url(${this.props.character.url})` }}>
-                    <div className="w-100 d-flex justify-content-start">
-                        <Button color="secondary" className="btn-circle" onClick={() => this.props.back()}>
-                            <FontAwesomeIcon icon="arrow-left" />
-                        </Button>
-                    </div>
                     <Row>
                         <Col>
                             {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}

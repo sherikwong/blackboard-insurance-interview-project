@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
-import { ChosenCharacter, Search, Pagination, Results } from '../index'
+import { Card, CardBody, CardFooter, Button } from 'reactstrap';
+import { ChosenCharacter, Search, Results } from '../index'
 import { fetchByAlignment } from '../../store/superheroes'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const GRID_WITH_ALL_CHAR = 'GRID_WITH_ALL_CHAR';
 const GRID_WITH_FILTERED = 'GRID_WITH_FILTERED';
@@ -73,6 +74,9 @@ class Characters extends Component {
 
         return (
             <div className="flip-card characters-body">
+                <Button color="secondary" className={`back-button ${this.state.character && 'show'}`} onClick={this.back}>
+                    <FontAwesomeIcon icon="arrow-left" />
+                </Button>
                 <div className={`flip-card-inner ${this.state.character && 'flip'}`}>
                     <Card className="h-100 results-card">
                         <div className="flip-card-front">

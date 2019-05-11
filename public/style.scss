@@ -259,6 +259,7 @@ form div {
 
     .chosen-character-container {
         height: 100%;
+
         .row {
             width: 100%;
         }
@@ -272,7 +273,7 @@ form div {
             position: absolute;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-end;
 
             .input-group-text {
                 border: 1px solid black;
@@ -333,12 +334,20 @@ img {
     overflow: scroll;
 }
 
-.btn-circle {
-    width: 10%;
-    height: 40rem;
+.back-button {
+    height: 3rem;
+    width: 3rem;
     text-align: center;
     padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
+    font-size: 2rem;
+    line-height: 1;
+    border-radius: 50%;
+    position: absolute;
+    left: -3.5rem;
+    transition: 0.5s ease-in;
+    opacity: 0;
+
+    &.show {
+        opacity: 1;
+    }
 }
