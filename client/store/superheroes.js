@@ -25,7 +25,7 @@ export const fetchByAlignment = alignment => {
 
 export const filterBySubstring = (substring, alignment, allCharOfAlignment) => {
     return dispatch => {
-        const filtered = allCharOfAlignment.filter(char => char.includes(substring));
+        const filtered = allCharOfAlignment.filter(char => char.fullName.toLowerCase().includes(substring));
         dispatch(filterAction(filtered, alignment));
     }
 }

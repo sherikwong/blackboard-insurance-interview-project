@@ -155,6 +155,11 @@ form div {
     .characters-gird {
       transition: opacity .5s ease width .5s ease;
     }
+    .pagination {
+        a {
+            margin: 0;
+        }
+    }
 }
 
 .alignment-header {

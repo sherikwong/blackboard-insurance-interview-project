@@ -29,7 +29,7 @@ class Character extends Component {
 }
 
 const mapState = () => {
-    return null;
+    return {};
 }
 
 const mapDispatch = () => {

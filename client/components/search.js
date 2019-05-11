@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { InputGroup, Input, InputGroupAddon, Button } from 'reactstrap';
+import { InputGroup, Input, InputGroupAddon, Button, Form } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { filterBySubstring } from '../store/superheroes'
 
@@ -12,6 +12,7 @@ class Search extends Component {
             substring: ''
         }
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.submitSearch = this.submitSearch.bind(this);
     }
 
     componentDidMount() {
@@ -22,12 +23,19 @@ class Search extends Component {
         this.setState({ substring: event.target.value });
     }
 
+    submitSearch(event) {
+        event.preventDefault();
+        this.props.filterBySubstring(this.state.substring, this.props.alignment, this.props.characters);
+        console.log('Props', this.props);
+        console.log('State', this.state);
+    }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.submitSearch}>
                 <InputGroup>
-                    <Input placeholder="Search..." / onChange={this.handleSearchChange}>
-                    <InputGroupAddon addonType="append">
+                    <Input placeholder="Search..." onChange={this.handleSearchChange} />
+                    <InputGroupAddon addonType="append" className="m-0">
                         <Button color="secondary">
                             <FontAwesomeIcon icon="search" />
                         </Button>
@@ -37,11 +45,12 @@ class Search extends Component {
         )
     }
 }
-// const mapState = (state, ownProps) => {
-//     return {
-//         // characters: state.characters.alignment && state.characters.alignment[ownProps.alignment]
-//     };
-// }
+const mapState = (state, ownProps) => {
+    return {
+        characters: state.characters.alignment && state.characters.alignment[ownProps.alignment],
+        filtered: state
+    };
+}
 
 const mapDispatch = dispatch => {
     return {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
-import { Character, ChosenCharacter, Search } from './index'
+import { Character, ChosenCharacter, Search, Pagination } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
 class Characters extends Component {
@@ -73,9 +73,15 @@ class Characters extends Component {
                     {this.state.grid.length && grid}
                 </CardBody>
                 <CardFooter>
-                    <Search />
+                    <Row>
+                        <Col md={6}>
+                            <Search alignment={this.props.alignment}/>
+                        </Col>
+                        <Col md={6}>
+                            <Pagination />
+                        </Col>
+                    </Row>
                 </CardFooter>
-                {/* {this.state.character && chosenCharacter}; */}
             </Card>
         )
 
