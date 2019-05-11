@@ -25,9 +25,7 @@ class Search extends Component {
 
     submitSearch(event) {
         event.preventDefault();
-        this.props.filterBySubstring(this.state.substring, this.props.alignment, this.props.characters);
-        console.log('Props', this.props);
-        console.log('State', this.state);
+        this.props.filter(this.state.substring);
     }
 
     render() {
