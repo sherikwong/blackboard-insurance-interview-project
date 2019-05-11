@@ -48,7 +48,7 @@ class Search extends Component {
 const mapState = (state, ownProps) => {
     return {
         characters: state.characters.alignment && state.characters.alignment[ownProps.alignment],
-        filtered: state
+        filtered: ownProps
     };
 }
 
