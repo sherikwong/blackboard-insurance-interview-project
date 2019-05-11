@@ -1,13 +1,13 @@
 const User = require('./user')
 const Powerstats = require('./powerstats');
-const BasicInfo = require('./basic-info');
+const Character = require('./character');
 
 
-BasicInfo.hasMany(Powerstats);
-Powerstats.belongsTo(BasicInfo)
+Character.hasOne(Powerstats);
+Powerstats.belongsTo(Character)
 
 module.exports = {
   User,
   Powerstats,
-  BasicInfo
+  Character
 }

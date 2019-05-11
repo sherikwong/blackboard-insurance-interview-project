@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { BasicInfo } = require('../db/models');
+const { Character } = require('../db/models');
 
 module.exports = router;
 
 router.get('/alignment/:alignment', (req, res, next) => {
   console.log('Find characters by alignment:', req.params.alignment);
-  BasicInfo.findAll({
+  Character.findAll({
     where: {
       alignment: {
         $eq: req.params.alignment
@@ -21,7 +21,7 @@ router.get('/alignment/:alignment', (req, res, next) => {
 })
 
 // router.get('/name/:substring', (req, res, next) => {
-//   BasicInfo.findAll({
+//   Character.findAll({
 //     where: {
 //       ['full-name']: {
 //         $eq: req.params.alignment

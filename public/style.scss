@@ -1,9 +1,15 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
+// @font-face {
+//     src: url('./avengeance/AVENGEANCE\ HEROIC\ AVENGER.ttf') format('ttf');
+//     font-family: 'header';
+// }
+
 $primary: rgb(9, 125, 167);
 $secondary: #EC770F;
 $danger: #96181C;
+$warning: #F9FE03;
 
 $theme-colors: ('primary': $primary,
 'secondary': $secondary,
@@ -11,6 +17,10 @@ $theme-colors: ('primary': $primary,
 );
 
 @import "~bootstrap/scss/bootstrap";
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'header'
+}
 
 .center {
     display: flex;

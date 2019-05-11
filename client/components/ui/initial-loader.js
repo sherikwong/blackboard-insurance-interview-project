@@ -25,8 +25,8 @@ class InitialLoader extends Component {
         const addToDB = (characterId) => {
             if (characterId <= NUMBER_OF_SUPERHEROES) {
                 axios.get(`/api/superheroes-api/${characterId}`).then(response => {
-                    const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
-                    this.props.currentLoadPercentage(completedId);
+                    // const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
+                    this.props.currentLoadPercentage(characterId);
                     return addToDB(response.data + 1);
                 }).catch(error => {
                     console.error(error);

@@ -16,7 +16,6 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        // this.props.filterBySubstring()
     }
 
     handleSearchChange(event) {

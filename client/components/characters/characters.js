@@ -60,6 +60,7 @@ class Characters extends Component {
     }
 
     chooseCharacter(character) {
+        this.setState({ character });
     }
 
     filter(substring) {
@@ -86,16 +87,15 @@ class Characters extends Component {
             </CardBody>
         );
 
-        return (
-            <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
+        const showResults = (
+            <div>
                 <CardBody className="characters-gird">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {(this.state
-                    [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length) ? <Results grid={this.state
-                    [GRID_WITH_FILTERED]} /> : <Results grid={this.state
-                    [GRID_WITH_ALL_CHAR]} />}
+                    <Results grid={this.state
+                    [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length ? this.state
+                        [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} />
                 </CardBody>
                 <CardFooter>
                     <Row>
@@ -107,6 +107,12 @@ class Characters extends Component {
                         </Col>
                     </Row>
                 </CardFooter>
+            </div>
+        )
+
+        return (
+            <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
+                {this.state.character ? chosenCharacter : showResults}
             </Card>
         )
 
