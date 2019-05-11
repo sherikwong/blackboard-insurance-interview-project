@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { InputGroup, Input, InputGroupAddon, Button, Form } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { filterBySubstring } from '../store/superheroes'
+import { filterBySubstring } from '../../store/superheroes'
 
 class Search extends Component {
     constructor() {

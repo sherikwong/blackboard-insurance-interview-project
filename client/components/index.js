@@ -1,18 +1,11 @@
-/**
- * `components/index.js` exists simply as a 'central export' for our components.
- * This way, we can import all of our components from the same place, rather than
- * having to figure out which file they belong to!
- */
-// export {default as Navbar} from './navbar'
-// export {default as UserHome} from './user-home'
-// export {Login, Signup} from './auth-form'
 export {default as Home} from './home'
 export {default as Header} from './header'
-export {default as Character} from './character'
-export {default as Characters} from './characters'
-export {default as InitialLoader} from './initial-loader'
-export {default as ChosenCharacter} from './chosen-character'
-// export {default as Search} from './search'
+export {default as Character} from './characters/character/character'
+export {default as Characters} from './characters/characters'
+export {default as InitialLoader} from './ui/initial-loader'
+export {default as ChosenCharacter} from './characters/character/chosen'
+export {default as Search} from './characters/search'
 export {default as Admin} from './admin-controls'
-export {default as Search} from './search'
-export {default as Pagination} from './pagination'
+export {default as Pagination} from './characters/pagination'
+export {default as Results} from './characters/results'
+

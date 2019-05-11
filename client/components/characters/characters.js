@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
-import { Character, ChosenCharacter, Search, Pagination } from './index'
-import { fetchByAlignment } from '../store/superheroes'
+import { ChosenCharacter, Search, Pagination, Results } from '../index'
+import { fetchByAlignment } from '../../store/superheroes'
+
+const GRID_WITH_ALL_CHAR = 'GRID_WITH_ALL_CHAR';
+const GRID_WITH_FILTERED = 'GRID_WITH_FILTERED';
 
 class Characters extends Component {
     constructor() {
         super();
         this.state = {
-            grid: {
-                all: [],
-                filtered: []
-            },
+            [GRID_WITH_ALL_CHAR]: [],
+            [GRID_WITH_FILTERED]: [],
             character: '',
             characters: []
         };
@@ -27,15 +28,12 @@ class Characters extends Component {
     }
 
     axiosGetAll() {
-        this.props.fetchByAlignment(this.props.alignment).then(data => {
+        this.props.fetchByAlignment(this.props.alignment).then(() => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
             this.setState({
                 characters: this.props.characters,
-                grid: {
-                    all: this.fillInGrid(this.props.characters)
-                }
+                [GRID_WITH_ALL_CHAR]: this.fillInGrid(this.props.characters)
             });
-            console.log(this.state);
         }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
@@ -56,11 +54,8 @@ class Characters extends Component {
             }
         }
         this.setState({
-            grid: {
-                [filtered ? 'filtered' : 'all']: grid
-            }
+            [filtered ? GRID_WITH_FILTERED : GRID_WITH_ALL_CHAR]: grid
         });
-        console.log('Filled in grid', grid);
         return grid;
     }
 
@@ -68,23 +63,20 @@ class Characters extends Component {
     }
 
     filter(substring) {
-        console.group(`Filtering for '${substring}'...`);
+        // console.group(`Filtering for '${substring}'...`);
         const filtered = this.state.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
         if (!substring) { // If no substring is provided...
-            console.log('No substring given.')
-            this.setState(state => ({
-                grid: {
-                    ...state.grid,
-                    filtered: []
-                }
-            }))
-            console.log('Resulting state:', this.state)
+            // console.log('No substring given.')
+            this.setState({
+                [GRID_WITH_FILTERED]: []
+            })
         } else { // If a substring is passed in...
             this.fillInGrid(filtered, true);
         }
         console.log(`Found ${filtered.length} results...`)
         console.log(filtered);
-        console.groupEnd();
+        console.log('Resulting state:', this.state)
+        // console.groupEnd();
     }
 
     render() {
@@ -94,31 +86,16 @@ class Characters extends Component {
             </CardBody>
         );
 
-        const grid = (incomingGrid, className) => {
-            console.log('Incoming grid', incomingGrid, className);
-            if (incomingGrid && incomingGrid.length) {
-                return (<div>
-                    {incomingGrid.map((row, r) => {
-                        return <div key={r} className={className}><Row>
-                            {row.map((column, c) => {
-                                return <Col xs={12} sm={6} md={4} key={c}>
-                                    <Character character={incomingGrid[r][c]} chooseCharacter={this.chooseCharacter} />
-                                </Col>
-                            })}
-                        </Row></div>
-                    })}
-                </div>)
-            }
-        }
-
         return (
             <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
                 <CardBody className="characters-gird">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {this.state.grid && this.state.grid.filtered && this.state.grid.filtered.length}
-                    {this.state.grid.filtered && this.state.grid.filtered.length ? grid(this.state.grid.filtered, 'filtered-results') : grid(this.state.grid.all, 'all-results')}
+                    {(this.state
+                    [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length) ? <Results grid={this.state
+                    [GRID_WITH_FILTERED]} /> : <Results grid={this.state
+                    [GRID_WITH_ALL_CHAR]} />}
                 </CardBody>
                 <CardFooter>
                     <Row>

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Card } from 'reactstrap';
 
 class ChosenCharacter extends Component {
-    constructor() {
-        super();
-    }
+    // constructor() {
+    //     super();
+    // }
 
     componentDidMount() {
     }

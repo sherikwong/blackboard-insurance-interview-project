@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap';
 import axios from 'axios';
 import { NUMBER_OF_SUPERHEROES } from '../constants'
-import { success, fail } from '../../server/db/ascii'
+import { fail } from '../../server/db/ascii'
 
 class Admin extends Component {
     constructor() {

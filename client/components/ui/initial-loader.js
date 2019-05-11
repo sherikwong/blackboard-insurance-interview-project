@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Progress, Button } from 'reactstrap';
 import axios from 'axios';
-import { NUMBER_OF_SUPERHEROES } from '../constants';
+import { NUMBER_OF_SUPERHEROES } from '../../constants';
 
 class InitialLoader extends Component {
     constructor() {
