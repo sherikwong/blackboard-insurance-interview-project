@@ -35,9 +35,8 @@ class ChosenCharacter extends Component {
         )
 
         return (
-            <div>
-                <Card>
-                    <img src={this.props.character.url} />
+            <div className="chosen-character-container">
+                <div className="chosen-character-image" style={{ backgroundImage: `url(${this.props.character.url})` }}>
                     <CardBody>
                         <Row>
                             <Col>
@@ -48,7 +47,8 @@ class ChosenCharacter extends Component {
                             </Col>
                         </Row>
                     </CardBody>
-                </Card>
+                </div>
+                {/* <img src={this.props.character.url} /> */}
             </div>
         )
     }

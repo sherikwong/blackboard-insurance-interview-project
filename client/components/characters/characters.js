@@ -45,9 +45,7 @@ class Characters extends Component {
 
     render() {
         const chosenCharacter = (
-            <CardBody className="card-face back">
-                <ChosenCharacter character={this.state.character} />
-            </CardBody>
+            this.state.character && <ChosenCharacter character={this.state.character />}
         );
 
         const showResults = (
@@ -57,7 +55,7 @@ class Characters extends Component {
                         <img className={this.props.alignment} />
                     </div>
                     <div className="overflow-scroll h-100">
-                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} chooseCharacter={this.chooseCharacter}/>
+                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} chooseCharacter={this.chooseCharacter} />
                     </div>
                 </CardBody>
                 <CardFooter>
@@ -77,7 +75,7 @@ class Characters extends Component {
                             {chosenCharacter}
                         </div>
                     </Card>
-                    </div>
+                </div>
             </div>
         )
 
