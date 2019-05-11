@@ -145,15 +145,45 @@ form div {
     }
 }
 
+
+.flip-card {
+    perspective: 1000px;
+    background-color: rgba(255, 255, 255, 0);
+    /* Remove this if you don't want the 3D effect */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+
 .body {
     height: 80%;
     width: 100%;
 
     .characters-body {
-        border: 2px solid black;
-        background-color: rgba(#ffffff, .8);
-        // transform: perspective(1) scaleZ(1) rotateY(0deg);
-        transition: transform 1s ease;
         width: 100%;
         height: 100%;
         perspective: 600px;
@@ -182,8 +212,9 @@ form div {
             margin: 1rem 0;
         }
 
-        &.flip {
-            transform: translateX(-100%) rotateY(-180deg);
+        .results-card {
+            border: 2px solid black;
+            background-color: rgba(255, 255, 255, .8);
         }
 
         .characters-grid {
@@ -196,7 +227,6 @@ form div {
                 @extend .center;
                 transition: all .5s ease;
                 @extend .text-truncate;
-                // height: auto;
 
                 img {
                     width: 100%;

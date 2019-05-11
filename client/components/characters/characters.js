@@ -37,15 +37,10 @@ class Characters extends Component {
     }
 
     filter(substring) {
-        // console.group(`Filtering for '${substring}'...`);
         const filtered = this.state.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
         this.setState({
             filtered: substring ? filtered : []
         })
-        console.log(`Found ${filtered.length} results...`)
-        console.log(filtered);
-        console.log('Resulting state:', this.state)
-        // console.groupEnd();
     }
 
     render() {
@@ -72,11 +67,18 @@ class Characters extends Component {
         )
 
         return (
-            <Card className={`characters-body ${this.state.character && 'flip'}`}>
-            <div className="flip-container">
-                {this.state.character ? chosenCharacter : showResults}
-                </div>
-            </Card>
+            <div className="flip-card characters-body">
+                <div className={`flip-card-inner ${this.state.character && 'flip'}`}>
+                    <Card className="h-100 results-card">
+                        <div className="flip-card-front">
+                            {showResults}
+                        </div>
+                        <div className="flip-card-back">
+                            {chosenCharacter}
+                        </div>
+                    </Card>
+                    </div>
+            </div>
         )
 
     }
