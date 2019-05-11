@@ -10,7 +10,8 @@ class Characters extends Component {
         super();
         this.state = {
             grid: [],
-            character: null
+            character: null,
+            flip: false
         };
         this.fillInGrid = this.fillInGrid.bind(this);
         this.chooseCharacter = this.chooseCharacter.bind(this);
@@ -44,6 +45,11 @@ class Characters extends Component {
     }
 
     chooseCharacter(character) {
+        setTimeout(() => {
+            this.setState({
+                flip: true
+            });
+        }, 1000);
         this.setState({
             character
         });
@@ -51,7 +57,7 @@ class Characters extends Component {
 
     render() {
         const chosenCharacter = (
-            <CardBody>
+            <CardBody className="character-profile-wrapper">
                 <ChosenCharacter character={this.state.character} />
             </CardBody>
         );
@@ -72,7 +78,7 @@ class Characters extends Component {
                         </Row>
                     })}
                 </CardBody>
-                {this.state.character && chosenCharacter};
+                {this.state.flip && chosenCharacter};
             </Card>
         )
 

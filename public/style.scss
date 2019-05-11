@@ -139,21 +139,27 @@ form div {
 }
 
 .characters-body {
-  transform: perspective(1) scaleZ(1) rotateY(0deg);
-  transition: transform 1s ease;
+    transform: perspective(1) scaleZ(1) rotateY(0deg);
+    transition: transform 1s ease;
+
     .row {
         margin: 1rem 0;
     }
 
     &.flip {
-      transform: perspective(200rem) scaleZ(2) rotateY(180deg);
-      .characters-gird {
-        opacity: 0;
-        width: 0;
-      }
+        transform: perspective(200rem) scaleZ(2) rotateY(180deg);
+
+        .characters-gird {
+            opacity: 0;
+        }
     }
+
     .characters-gird {
-      transition: opacity .5s ease width .5s ease;
+        transition: all .5s ease;
+    }
+
+    .character-profile-wrapper {
+        position: absolute;
     }
 }
 
