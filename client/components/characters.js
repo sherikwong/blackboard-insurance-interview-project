@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Row, Col, Card, CardBody, CardFooter, Button } from 'reactstrap';
+import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
 import { Character, ChosenCharacter, Search, Pagination } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
@@ -89,7 +89,6 @@ class Characters extends Component {
 
         return (
             <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
-                <Button onClick={this.spitOutReducer}>Spit</Button>
                 <CardBody className="characters-gird">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
