@@ -18,9 +18,6 @@ class Admin extends Component {
 
     loadDB() {
         const addToDB = (minId, maxId) => {
-            if () {
-                
-            }
             const apiRequest = (id) => {
                 axios.get(`/api/superheroes-api/${id}`).then(() => {
                     return addToDB(id + 1);

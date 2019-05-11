@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Row, Col, Card, CardBody } from 'reactstrap';
-import { Character, ChosenCharacter } from './index'
+import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
+import { Character, ChosenCharacter, Search } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
 class Characters extends Component {
@@ -17,16 +17,12 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        // this.fillInGrid();
+        this.fillInGrid();
     }
 
     fillInGrid() {
         this.props.fetchByAlignment(this.props.alignment).then(data => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
-            // this.setState({
-            //     characters: this.props.characters
-            // });
-
             const grid = [];
             let currentRow = [];
             for (let i = 0; i < this.props.characters.length; i++) {
@@ -56,23 +52,30 @@ class Characters extends Component {
             </CardBody>
         );
 
+        const grid = (<div>
+            {this.state.grid.map((row, r) => {
+                return <Row key={r}>
+                    {row.map((column, c) => {
+                        return <Col xs={12} sm={6} md={4} key={c}>
+                            <Character character={this.state.grid[r][c]} chooseCharacter={this.chooseCharacter} />
+                        </Col>
+                    })}
+                </Row>
+            })}
+        </div>)
+
         return (
             <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
                 <CardBody className="characters-gird">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {this.state.grid.length && Array.from(Array(3), (e, i) => {
-                        return <Row key={i}>
-                            {Array.from(Array(3), (e, j) => {
-                                return <Col xs={12} sm={6} md={4} key={j}>
-                                    <Character character={this.state.grid[i][j]} chooseCharacter={this.chooseCharacter} />
-                                </Col>
-                            })}
-                        </Row>
-                    })}
+                    {this.state.grid.length && grid}
                 </CardBody>
-                {this.state.character && chosenCharacter};
+                <CardFooter>
+                    <Search />
+                </CardFooter>
+                {/* {this.state.character && chosenCharacter}; */}
             </Card>
         )
 

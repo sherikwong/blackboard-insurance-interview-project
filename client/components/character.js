@@ -22,7 +22,7 @@ class Character extends Component {
         return (
                 <Card className="character-card"  onClick={this.chooseCharacter}>
                     <img src={this.props.character.url} />
-                    <CardFooter>{this.props.character['full-name']}</CardFooter>
+                    <CardFooter>{this.props.character.fullName}</CardFooter>
                 </Card>
         )
     }
