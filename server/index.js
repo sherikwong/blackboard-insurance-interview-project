@@ -11,7 +11,7 @@ const sessionStore = new SequelizeStore({ db })
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-// const request = require('request-promise');
+const {success, fail} = require('./db/ascii');
 // const { SUPERHERO_URL } = require('../client/constants');
 module.exports = app
 
@@ -33,6 +33,17 @@ passport.deserializeUser((id, done) =>
     .then(user => done(null, user))
     .catch(done)
 )
+
+const startListening = () => {
+  // start listening (and create a 'server' object representing our server)
+  const server = app.listen(PORT, () =>
+    console.log(`Mixing it up on port ${PORT}`)
+  )
+
+  // set up our socket control center
+  const io = socketio(server)
+  require('./socket')(io)
+}
 
 const createApp = () => {
   // logging middleware
@@ -61,13 +72,15 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  // app.use((req, res, next) => {
-  //   console.log('================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================')
-  //   request.get(`${SUPERHERO_URL}/5`)
-  //     .then(response => {
-  //       next();
-  //     }).catch(error => console.error(error));
-  // })
+
+
+  app.post('/drop-db', (req, res, next) => {
+    console.log('Dropping DB on back-end');
+    return db.sync({force: true})
+      .then(() => {
+        console.log(success);
+      }).catch(() => console.error(fail))
+  })
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
@@ -94,17 +107,6 @@ const createApp = () => {
     console.error(err.stack)
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
-}
-
-const startListening = () => {
-  // start listening (and create a 'server' object representing our server)
-  const server = app.listen(PORT, () =>
-    console.log(`Mixing it up on port ${PORT}`)
-  )
-
-  // set up our socket control center
-  const io = socketio(server)
-  require('./socket')(io)
 }
 
 const syncDb = () => db.sync();

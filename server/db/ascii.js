@@ -22,4 +22,25 @@ const pug = `
 .....&.............#&................&.\n
 .....&......,*&&/.....*%&&&&&%.......&.`
 
-module.exports = pug;
+const success = `
+/ __| | | |/ __/ __/ _ \/ __/ __|\n
+\__ \ |_| | (_| (_|  __/\__ \__ \\n
+|___/\__,_|\___\___\___||___/___/\n
+`
+
+const fail = `
+__      _ _\n
+/ _|    (_) |\n
+| |_ __ _ _| |\n
+|  _/ _\` | | |\n
+| || (_| | | |\n
+|_| \__,_|_|_|
+`
+
+const indents = lines => {
+    return new Array(lines).map(() => '\n');
+}
+
+
+
+module.exports = {success, pug, fail, indents};

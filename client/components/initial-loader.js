@@ -9,7 +9,7 @@ class InitialLoader extends Component {
     constructor() {
         super();
         this.state = {
-            continue: true
+            continue: false
         };
         this.loadAllCharactersIntoDB = this.loadAllCharactersIntoDB.bind(this);
         this.minimizeLoading = this.minimizeLoading.bind(this);
@@ -22,7 +22,7 @@ class InitialLoader extends Component {
     }
 
     loadAllCharactersIntoDB() {
-        const addToDB = characterId => {
+        const addToDB = (characterId) => {
             if (characterId <= NUMBER_OF_SUPERHEROES) {
                 axios.get(`/api/superheroes-api/${characterId}`).then(response => {
                     const completedId = Math.floor(response.data / NUMBER_OF_SUPERHEROES);
@@ -34,7 +34,7 @@ class InitialLoader extends Component {
             }
         }
 
-        // addToDB(1);
+        addToDB(1);
     }
 
     minimizeLoading() {

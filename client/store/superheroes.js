@@ -47,7 +47,7 @@ export const fetchImageById = id => {
 
 export const fetchByAlignment = alignment => {
     return async dispatch => {
-        const { data } = await axios.get(`/api/superheroes/all/${alignment}`);
+        const { data } = await axios.get(`/api/superheroes/alignment/${alignment}`);
         dispatch(alignmentAction(data, alignment));
     }
 }

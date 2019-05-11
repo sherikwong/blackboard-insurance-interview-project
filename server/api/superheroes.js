@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {BasicInfo} = require('../db/models');
+const { BasicInfo } = require('../db/models');
 // const Images = require('../db/models/images');
 // const Powerstats = require('../db/models/powerstats');
 
@@ -29,11 +29,24 @@ router.get('/:id', (req, res, next) => {
 
 // })
 
-router.get('/all/:alignment', (req, res, next) => {
+router.get('/alignment/:alignment', (req, res, next) => {
   console.log('Find characters by alignment:', req.params.alignment);
   BasicInfo.findAll({
     where: {
       alignment: {
+        $eq: req.params.alignment
+      }
+    },
+    // attributes: ['id', 'full-name', 'alignment', 'url']
+  }).then(data => {
+    res.send(data);
+  }).catch(error => console.error(error));
+})
+
+router.get('/name/:substring', (req, res, next) => {
+  BasicInfo.findAll({
+    where: {
+      ['full-name']: {
         $eq: req.params.alignment
       }
     },
