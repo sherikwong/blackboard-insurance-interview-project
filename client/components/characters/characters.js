@@ -32,42 +32,15 @@ class Characters extends Component {
         }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
-    /**
-     * Populates state's grid of characters to display
-     * @param {*} characters Array of DB characters
-     * @param {*} filtered Determines which grid key to fill in
-     */
-    // fillInGrid(characters, filtered = false) {
-    //     const grid = [];
-    //     let currentRow = [];
-    //     for (let i = 0; i < characters.length; i++) {
-    //         if (currentRow.length < 3) {
-    //             currentRow.push(characters[i]);
-    //         } else {
-    //             grid.push(currentRow);
-    //             currentRow = [];
-    //         }
-    //     }
-    //     this.setState({
-    //         [filtered ? GRID_WITH_FILTERED : GRID_WITH_ALL_CHAR]: grid
-    //     });
-    //     return grid;
-    // }
-
     chooseCharacter(character) {
         this.setState({ character });
     }
 
     filter(substring) {
-        // console.group(`Filtering for '${substring}'...`);
         const filtered = this.state.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
         this.setState({
             filtered: substring ? filtered : []
         })
-        console.log(`Found ${filtered.length} results...`)
-        console.log(filtered);
-        console.log('Resulting state:', this.state)
-        // console.groupEnd();
     }
 
     render() {
@@ -83,9 +56,6 @@ class Characters extends Component {
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {/* <Results grid={this.state
-                    [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length ? this.state
-                        [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} /> */}
                     <div className="overflow-scroll h-100">
                         <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} />
                     </div>
@@ -97,9 +67,18 @@ class Characters extends Component {
         )
 
         return (
-            <Card className={`characters-body ${this.state.character && 'flip'}`}>
-                {this.state.character ? chosenCharacter : showResults}
-            </Card>
+            <div className="flip-card characters-body">
+                <div className={`flip-card-inner ${this.state.character && 'flip'}`}>
+                    <Card className="h-100 results-card">
+                        <div className="flip-card-front">
+                            {showResults}
+                        </div>
+                        <div className="flip-card-back">
+                            {chosenCharacter}
+                        </div>
+                    </Card>
+                    </div>
+            </div>
         )
 
     }
