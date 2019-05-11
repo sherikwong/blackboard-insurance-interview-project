@@ -24,7 +24,7 @@ class Results extends Component {
                 </Row></div>
             })} */}
             <Row>
-            {this.props.characters.map((character, i) => {
+            {this.props.characters && this.props.characters.map((character, i) => {
                 return <Col key={i} className="col-4">
                 <Character character={character} chooseCharacter={this.props.chooseCharacter} />
                 </Col>

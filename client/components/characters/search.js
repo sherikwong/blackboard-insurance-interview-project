@@ -29,7 +29,7 @@ class Search extends Component {
 
     render() {
         return (
-            <form onSubmit={this.submitSearch}>
+            <form onSubmit={this.submitSearch} className="search">
                 <InputGroup>
                     <Input placeholder="Search..." onChange={this.handleSearchChange} />
                     <InputGroupAddon addonType="append" className="m-0">

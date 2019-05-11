@@ -78,31 +78,26 @@ class Characters extends Component {
         );
 
         const showResults = (
-            <div>
-                <CardBody className="characters-gird">
+            <div className="h-100 d-flex flex-column">
+                <CardBody className="characters-grid">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
                     {/* <Results grid={this.state
                     [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length ? this.state
                         [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} /> */}
-                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters}/>
+                    <div className="overflow-scroll h-100">
+                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} />
+                    </div>
                 </CardBody>
                 <CardFooter>
-                    <Row>
-                        <Col md={6}>
-                            <Search alignment={this.props.alignment} filter={this.filter} />
-                        </Col>
-                        <Col md={6}>
-                            <Pagination />
-                        </Col>
-                    </Row>
+                    <Search alignment={this.props.alignment} filter={this.filter} />
                 </CardFooter>
             </div>
         )
 
         return (
-            <Card className={`body-card characters-body ${this.state.character && 'flip'}`}>
+            <Card className={`characters-body ${this.state.character && 'flip'}`}>
                 {this.state.character ? chosenCharacter : showResults}
             </Card>
         )

@@ -46,18 +46,19 @@ class Home extends Component {
             <div className="full-container">
                 <Header />
                 <div className="body">
-                    <Row className="justify-content-between">
+                    <Row className="justify-content-between h-100">
                         <Col className="col-1 col-sm-1 col-md-1" />
-                        <Col className="col-10 col-sm-4 col-md-4">
+                        <Col className="col-10 col-sm-4 col-md-4  h-100">
                             <Characters alignment={Alignments.Good} />
                         </Col>
                         <Col className="col-0 col-sm-2 col-md-2"/>
-                        <Col className="col-10 col-sm-4 col-md-4">
+                        <Col className="col-10 col-sm-4 col-md-4  h-100">
                             <Characters alignment={Alignments.Bad} />
                         </Col>
                         <Col className="col-1 col-sm-1 col-md-1" />
                     </Row>
                 </div>
+                <div className="footer"/>
             </div>
         );
 
