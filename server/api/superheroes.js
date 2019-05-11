@@ -1,20 +1,18 @@
 const router = require('express').Router();
 const { BasicInfo } = require('../db/models');
-// const Images = require('../db/models/images');
-// const Powerstats = require('../db/models/powerstats');
 
 module.exports = router;
 
 router.get('/:id', (req, res, next) => {
-  Biography.findAll({
-    where: {
-      id: {
-        $eq: req.params.id
-      },
-    }
-  }).then(allInfo => {
-    res.send(allInfo);
-  }).catch(error => console.error(error));
+  // Biography.findAll({
+  //   where: {
+  //     id: {
+  //       $eq: req.params.id
+  //     },
+  //   }
+  // }).then(allInfo => {
+  //   res.send(allInfo);
+  // }).catch(error => console.error(error));
 })
 
 // router.get('/:id/biography', (req, res, next) => {

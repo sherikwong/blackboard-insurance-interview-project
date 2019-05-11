@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchBiographyById, fetchImageById } from '../store/superheroes';
-import { Row, Col, Card, CardBody } from 'reactstrap';
+import { Card } from 'reactstrap';
 import CardFooter from 'reactstrap/lib/CardFooter';
 
 class Character extends Component {
@@ -33,10 +32,9 @@ class Character extends Component {
 //     return null;
 // }
 
-const mapDispatch = dispatch => {
+const mapDispatch = () => {
     return {
-        fetchBiographyById: id => dispatch(fetchBiographyById(id)),
-        fetchImageById: id => dispatch(fetchImageById(id)),
+
     }
 }
 

@@ -2,12 +2,12 @@ const db = require('../db');
 const { basicModel, modelTypes } = require('./util')
 
 const Powerstats = db.define('powerstats', {
-  intelligence: basicModel(modelTypes.Integer, false),
-  strength: basicModel(modelTypes.Integer, false),
-  speed: basicModel(modelTypes.Integer, false),
-  durability: basicModel(modelTypes.Integer, false),
-  power: basicModel(modelTypes.Integer, false),
-  combat: basicModel(modelTypes.Integer, false),
+  intelligence: basicModel(modelTypes.String),
+  strength: basicModel(modelTypes.String),
+  speed: basicModel(modelTypes.String),
+  durability: basicModel(modelTypes.String),
+  power: basicModel(modelTypes.String),
+  combat: basicModel(modelTypes.String),
 });
 
 module.exports = Powerstats;

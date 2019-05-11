@@ -5,7 +5,7 @@ const modelTypes = {
   Integer: 'INTEGER'
 }
 
-const basicModel = (type, unique = false, allowNull = false) => ({
+const basicModel = (type, unique = false, allowNull = true) => ({
   type: Sequelize[type],
   unique,
   allowNull

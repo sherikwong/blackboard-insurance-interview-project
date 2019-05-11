@@ -1,12 +1,9 @@
 const router = require('express').Router();
 const { SUPERHERO_URL } = require('../../client/constants');
 const axios = require('axios');
-const Biography = require('../db/models/biography');
-const Images = require('../db/models/images');
 const Powerstats = require('../db/models/powerstats');
 const BasicInfo = require('../db/models/basic-info');
 const { pug, fail, success } = require('../db/ascii')
-const camelcase = require('camelcase');
 
 const errorBox = (string) => {
   let finalString = '';
@@ -32,16 +29,15 @@ router.get('/:id', (req, res, next) => {
       const fullProfile = response.data;
 
       BasicInfo.create({
-        fullName: fullProfile.biography.fullName,
+        fullName: fullProfile.biography['full-name'],
         url: fullProfile.image.url,
         alignment: fullProfile.biography.alignment,
-      }).then(() => successLogger('Created basic info document'))
-        .catch(error => errorBox(`Problem adding to BasicInfo table. ERROR: ${error}`));
+      }).catch(error => errorBox(`Problem adding to BasicInfo table. ERROR: ${error}`));
 
-      Powerstats.create(fullProfile.powerstats).then(() => {
-        successLogger('Created powerstats');
-      }).catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
+      Powerstats.create(fullProfile.powerstats)
+        .catch(error => errorBox(`Problem adding to PowerStats table. ERROR: ${error}`));
 
+      res.send(req.params.id);
     }).catch(error => errorBox(`Problem getting data from Superhero API. ERROR: ${error}`));
   console.groupEnd();
 })
