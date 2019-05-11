@@ -29,9 +29,9 @@ class Character extends Component {
     }
 }
 
-// const mapState = () => {
-//     return null;
-// }
+const mapState = () => {
+    return null;
+}
 
 const mapDispatch = dispatch => {
     return {
@@ -42,7 +42,7 @@ const mapDispatch = dispatch => {
 
 export default withRouter(
     connect(
-        null,
+        mapState,
         mapDispatch
     )(Character)
 );
