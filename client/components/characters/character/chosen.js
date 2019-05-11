@@ -38,7 +38,7 @@ class ChosenCharacter extends Component {
         const values = Object.values(fieldsToView)
 
         const groupField = (key, value) => (
-            <InputGroup>
+            <InputGroup className="m-1">
                 <InputGroupAddon addonType="prepend" className="w-50">
                     <InputGroupText className="w-100">{key}</InputGroupText>
                 </InputGroupAddon>
@@ -56,7 +56,7 @@ class ChosenCharacter extends Component {
                                 {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}
                             </Col>
                             <Col>
-                                {keys.slice(3, 5).map((key, i) => groupField(key, values[i]))}
+                                {keys.slice(3, 6).map((key, i) => groupField(key, values[i]))}
                             </Col>
                         </Row>
                     </CardBody>

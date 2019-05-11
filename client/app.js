@@ -6,7 +6,7 @@ import { Home, Admin } from './components/index'
 const App = () => {
   return (
     <div className="full-container center">
-      <Admin />
+      {/* <Admin /> */}
       <Home />
       {/* <Routes /> */}
     </div>
