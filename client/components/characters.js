@@ -5,53 +5,39 @@ import { Row, Col, Card, CardBody, CardFooter } from 'reactstrap';
 import { Character, ChosenCharacter, Search, Pagination } from './index'
 import { fetchByAlignment } from '../store/superheroes'
 
-
-class CharactersState {
-    hello: string;
-}
-
 class Characters extends Component {
     constructor() {
         super();
         this.state = {
             grid: [],
-            character: null,
-            filtered: null,
-            allCharacters: null,
+            character: null
         };
         this.fillInGrid = this.fillInGrid.bind(this);
         this.chooseCharacter = this.chooseCharacter.bind(this);
-        this.getAllCharacters = this.getAllCharacters.bind(this);
+        this.spitOutReducer = this.spitOutReducer.bind(this);
     }
 
     componentDidMount() {
-        this.getAllCharacters();
-        const hello: CharactersState = 'what';
+        this.fillInGrid();
     }
 
-
-    getAllCharacters() {
+    fillInGrid() {
         this.props.fetchByAlignment(this.props.alignment).then(data => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
-            this.setState({ allCharacters: this.props.characters });
-            this.fillInGrid(this.props.characters);
-        }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
-    }
-
-    fillInGrid(characters) {
-        const grid = [];
-        let currentRow = [];
-        for (let i = 0; i < characters.length; i++) {
-            if (currentRow.length < 3) {
-                currentRow.push(characters[i]);
-            } else {
-                grid.push(currentRow);
-                currentRow = [];
+            const grid = [];
+            let currentRow = [];
+            for (let i = 0; i < this.props.characters.length; i++) {
+                if (currentRow.length < 3) {
+                    currentRow.push(this.props.characters[i]);
+                } else {
+                    grid.push(currentRow);
+                    currentRow = [];
+                }
             }
-        }
-        this.setState({
-            grid
-        });
+            this.setState({
+                grid
+            });
+        }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
     chooseCharacter(character) {
@@ -60,13 +46,9 @@ class Characters extends Component {
         });
     }
 
-    filter(substring) {
-        const filtered = this.state.allCharacters.filter(char => char.fullName.toLowerCase().includes(substring));
-        this.setState({
-            filtered:
-        })
+    spitOutReducer() {
+        console.log(this.props);
     }
-
 
     render() {
         const chosenCharacter = (
@@ -98,7 +80,7 @@ class Characters extends Component {
                 <CardFooter>
                     <Row>
                         <Col md={6}>
-                            <Search alignment={this.props.alignment} />
+                            <Search alignment={this.props.alignment}/>
                         </Col>
                         <Col md={6}>
                             <Pagination />
@@ -107,6 +89,7 @@ class Characters extends Component {
                 </CardFooter>
             </Card>
         )
+
     }
 }
 
