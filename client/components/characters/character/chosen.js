@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Card } from 'reactstrap';
 import { fetchStats } from '../../../store/superheroes';
+import { InputGroup, InputGroupText, CardBody, Card, Input, InputGroupAddon } from 'reactstrap';
 
 class ChosenCharacter extends Component {
     constructor() {
         super();
+        this.state = {
+            combat: 0,
+            intelligence: 0,
+            power: 0,
+            speed: 0,
+            strength: 0,
+            durability: 0
+        }
     }
 
     componentDidMount() {
@@ -15,14 +23,33 @@ class ChosenCharacter extends Component {
 
     getStats() {
         this.props.fetchStats(this.props.character.id);
-        console.log(this.props);
+        setTimeout(() => {
+            console.log(this.props);
+        }, 1000)
     }
 
     render() {
+        const keys = Object.keys(this.state);
+        const values = Object.values(this.state);
+
+        const groupField = (key, value) => (
+            <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText>{key}</InputGroupText>
+                </InputGroupAddon>
+                <Input className="unclickable" placeholder={value} />
+            </InputGroup>
+        )
+
         return (
             <div>
                 <Card>
                     <img src={this.props.character.url} />
+                    <CardBody>
+                        {this.state.combat ? keys.map((key, i) => {
+                            groupField(key, values[i]);
+                        }) : null}
+                    </CardBody>
                 </Card>
             </div>
         )
@@ -31,7 +58,7 @@ class ChosenCharacter extends Component {
 
 const mapState = (state, ownProps) => {
     return {
-        stats: state
+        stats: state.characters
     };
 }
 

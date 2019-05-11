@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const GET_ALL_ALIGNMENT = 'GET_ALL_ALIGNMENT';
 const GET_STATS = 'GET_STATS';
-const FILTER_CHAR = 'FILTER_CHAR';
 
 export const alignmentAction = (characters, alignment) => ({
     type: GET_ALL_ALIGNMENT,
@@ -24,7 +23,7 @@ export const statsAction = (stats) => ({
 export const fetchStats = characterId => {
     return async dispatch => {
         const { data } = await axios.get(`/api/characters/${characterId}/stats`);
-        dispatch(statsAction(data, characterId));
+        dispatch(statsAction(data));
     }
 }
 
@@ -39,8 +38,6 @@ const charactersReducer = (state = [], action) => {
             };
         case GET_STATS:
             return action.stats;
-        case FILTER_CHAR:
-            return { ...state, filtered: action.filtered[action.alignment] }
         default:
             return state;
     }
