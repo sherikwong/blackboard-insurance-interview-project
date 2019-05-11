@@ -32,28 +32,6 @@ class Characters extends Component {
         }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
-    /**
-     * Populates state's grid of characters to display
-     * @param {*} characters Array of DB characters
-     * @param {*} filtered Determines which grid key to fill in
-     */
-    // fillInGrid(characters, filtered = false) {
-    //     const grid = [];
-    //     let currentRow = [];
-    //     for (let i = 0; i < characters.length; i++) {
-    //         if (currentRow.length < 3) {
-    //             currentRow.push(characters[i]);
-    //         } else {
-    //             grid.push(currentRow);
-    //             currentRow = [];
-    //         }
-    //     }
-    //     this.setState({
-    //         [filtered ? GRID_WITH_FILTERED : GRID_WITH_ALL_CHAR]: grid
-    //     });
-    //     return grid;
-    // }
-
     chooseCharacter(character) {
         this.setState({ character });
     }
@@ -83,11 +61,8 @@ class Characters extends Component {
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    {/* <Results grid={this.state
-                    [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length ? this.state
-                        [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} /> */}
                     <div className="overflow-scroll h-100">
-                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} />
+                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters} chooseCharacter={this.chooseCharacter}/>
                     </div>
                 </CardBody>
                 <CardFooter>

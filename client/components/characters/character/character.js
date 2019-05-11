@@ -12,14 +12,13 @@ class Character extends Component {
     }
 
     chooseCharacter() {
-        event.preventDefault();
         this.props.chooseCharacter(this.props.character);
     }
 
     render() {
         return (
             <Card className="character-card" onClick={this.chooseCharacter}>
-                <img src={this.props.character.url} />
+                <img src={this.props.character.url} onError={(e) => { e.target.onerror = null; e.target.src = '/error.png' }} />
                 <CardFooter>{this.props.character.fullName}</CardFooter>
             </Card>
         )
