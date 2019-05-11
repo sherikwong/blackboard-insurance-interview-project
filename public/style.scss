@@ -258,18 +258,41 @@ form div {
     }
 
     .chosen-character-container {
-        display: flex;
-        flex-direction: column;
-        position: relative;
+        height: 100%;
+        .row {
+            width: 100%;
+        }
 
         .chosen-character-image {
             width: 100%;
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
             height: 100%;
-            // top: 0;
-            // bottom: 0;
             position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .input-group-text {
+                border: 1px solid black;
+                color: black;
+                text-align: center;
+                width: 100%;
+            }
+
+            .input-group-append {
+                width: 40%;
+            }
+
+            .input-group-prepend {
+                width: 60%;
+
+                .input-group-text {
+                    background-color: black;
+                    color: white;
+                }
+            }
         }
     }
 }
@@ -308,4 +331,14 @@ img {
 
 .overflow-scroll {
     overflow: scroll;
+}
+
+.btn-circle {
+    width: 10%;
+    height: 40rem;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
 }

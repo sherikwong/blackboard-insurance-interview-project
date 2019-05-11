@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStats } from '../../../store/superheroes';
-import { InputGroup, InputGroupText, CardBody, Card, Input, InputGroupAddon, Row, Col } from 'reactstrap';
+import { InputGroup, InputGroupText, Button, InputGroupAddon, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class ChosenCharacter extends Component {
     componentDidMount() {
@@ -26,29 +27,31 @@ class ChosenCharacter extends Component {
         const values = Object.values(fieldsToView)
 
         const groupField = (key, value) => (
-            <InputGroup className="m-1" key={key}>
-                <InputGroupAddon addonType="prepend" className="w-50">
-                    <InputGroupText className="w-100">{key}</InputGroupText>
+            <InputGroup key={key}>
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText>{key}</InputGroupText>
                 </InputGroupAddon>
-                <Input className="unclickable w-50" placeholder={value} />
+                <InputGroupAddon addonType="append">{value}</InputGroupAddon>
             </InputGroup>
         )
 
         return (
             <div className="chosen-character-container">
                 <div className="chosen-character-image" style={{ backgroundImage: `url(${this.props.character.url})` }}>
-                    <CardBody>
-                        <Row>
-                            <Col>
-                                {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}
-                            </Col>
-                            <Col>
-                                {keys.slice(3, 6).map((key, i) => groupField(key, values[i]))}
-                            </Col>
-                        </Row>
-                    </CardBody>
+                    <div className="w-100 d-flex justify-content-start">
+                        <Button color="secondary" className="btn-circle" onClick={() => this.props.back()}>
+                            <FontAwesomeIcon icon="arrow-left" />
+                        </Button>
+                    </div>
+                    <Row>
+                        <Col>
+                            {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}
+                        </Col>
+                        <Col>
+                            {keys.slice(3, 6).map((key, i) => groupField(key, values[i]))}
+                        </Col>
+                    </Row>
                 </div>
-                {/* <img src={this.props.character.url} /> */}
             </div>
         )
     }

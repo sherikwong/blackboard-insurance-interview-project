@@ -7,9 +7,9 @@ import store from './store'
 import App from './app'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faSearch);
+library.add(fab, faSearch, faArrowLeft);
 
 // establishes socket connection
 import './socket'

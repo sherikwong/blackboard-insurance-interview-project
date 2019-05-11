@@ -20,6 +20,7 @@ class Characters extends Component {
         this.chooseCharacter = this.chooseCharacter.bind(this);
         this.filter = this.filter.bind(this);
         this.axiosGetAll = this.axiosGetAll.bind(this);
+        this.back = this.back.bind(this);
     }
 
     componentDidMount() {
@@ -43,9 +44,15 @@ class Characters extends Component {
         })
     }
 
+    back() {
+        this.setState({
+            character: null
+        })
+    }
+
     render() {
         const chosenCharacter = (
-            this.state.character && <ChosenCharacter character={this.state.character />}
+            this.state.character && <ChosenCharacter className="h-100" character={this.state.character} back={this.back} />
         );
 
         const showResults = (
