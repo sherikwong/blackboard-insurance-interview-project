@@ -5,18 +5,6 @@ import { fetchStats } from '../../../store/superheroes';
 import { InputGroup, InputGroupText, CardBody, Card, Input, InputGroupAddon, Row, Col } from 'reactstrap';
 
 class ChosenCharacter extends Component {
-    constructor() {
-        super();
-        this.state = {
-            combat: 0,
-            intelligence: 0,
-            power: 0,
-            speed: 0,
-            strength: 0,
-            durability: 0
-        }
-    }
-
     componentDidMount() {
         this.getStats();
     }
@@ -38,11 +26,11 @@ class ChosenCharacter extends Component {
         const values = Object.values(fieldsToView)
 
         const groupField = (key, value) => (
-            <InputGroup className="m-1">
+            <InputGroup className="m-1" key={key}>
                 <InputGroupAddon addonType="prepend" className="w-50">
                     <InputGroupText className="w-100">{key}</InputGroupText>
                 </InputGroupAddon>
-                <Input className="unclickable" placeholder={value} className="w-50" />
+                <Input className="unclickable w-50" placeholder={value} />
             </InputGroup>
         )
 

@@ -152,22 +152,38 @@ form div {
     .characters-body {
         border: 2px solid black;
         background-color: rgba(#ffffff, .8);
-        transform: perspective(1) scaleZ(1) rotateY(0deg);
+        // transform: perspective(1) scaleZ(1) rotateY(0deg);
         transition: transform 1s ease;
         width: 100%;
         height: 100%;
+        perspective: 600px;
+
+        .flip-container {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform-origin: center right;
+            transition: transform 1s;
+            position: relative;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+
+            &.back {
+                transform: rotateY(180deg);
+            }
+        }
 
         .row {
             margin: 1rem 0;
         }
 
         &.flip {
-            transform: perspective(200rem) scaleZ(2) rotateY(180deg);
-
-            .characters-gird {
-                opacity: 0;
-                width: 0;
-            }
+            transform: translateX(-100%) rotateY(-180deg);
         }
 
         .characters-grid {
@@ -180,7 +196,7 @@ form div {
                 @extend .center;
                 transition: all .5s ease;
                 @extend .text-truncate;
-                // transform: scale(1, 1);
+                // height: auto;
 
                 img {
                     width: 100%;
@@ -194,6 +210,7 @@ form div {
                     transform: scale(1.05, 1.05);
                     margin: -calc(15/2)px;
                 }
+
                 .card-footer {
                     border-top: 1px solid black;
                     padding: .5rem;
@@ -203,6 +220,7 @@ form div {
 
         .search {
             margin: 0;
+
             .input-group {
                 margin: 0;
             }
@@ -241,50 +259,7 @@ img {
 .unclickable {
     pointer-events: none;
 }
+
 .overflow-scroll {
     overflow: scroll;
-}
-
-
-.scene {
-  width: 200px;
-  height: 260px;
-  border: 1px solid #CCC;
-  margin: 40px 0;
-  perspective: 600px;
-}
-
-.card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform-origin: center right;
-  transition: transform 1s;
-}
-
-.card.is-flipped {
-  transform: translateX(-100%) rotateY(-180deg);
-}
-
-.card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  backface-visibility: hidden;
-}
-
-.card__face--front {
-  background: red;
-}
-
-.card__face--back {
-  background: blue;
-  transform: rotateY(180deg);
 }

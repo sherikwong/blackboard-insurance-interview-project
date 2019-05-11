@@ -50,13 +50,13 @@ class Characters extends Component {
 
     render() {
         const chosenCharacter = (
-            <CardBody>
+            <CardBody className="card-face back">
                 <ChosenCharacter character={this.state.character} />
             </CardBody>
         );
 
         const showResults = (
-            <div className="h-100 d-flex flex-column">
+            <div className="h-100 d-flex flex-column card-face">
                 <CardBody className="characters-grid">
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
@@ -73,7 +73,9 @@ class Characters extends Component {
 
         return (
             <Card className={`characters-body ${this.state.character && 'flip'}`}>
+            <div className="flip-container">
                 {this.state.character ? chosenCharacter : showResults}
+                </div>
             </Card>
         )
 
