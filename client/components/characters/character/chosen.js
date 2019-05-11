@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStats } from '../../../store/superheroes';
-import { InputGroup, InputGroupText, CardBody, Card, Input, InputGroupAddon } from 'reactstrap';
+import { InputGroup, InputGroupText, CardBody, Card, Input, InputGroupAddon, Row, Col } from 'reactstrap';
 
 class ChosenCharacter extends Component {
     constructor() {
@@ -23,21 +23,26 @@ class ChosenCharacter extends Component {
 
     getStats() {
         this.props.fetchStats(this.props.character.id);
-        setTimeout(() => {
-            console.log(this.props);
-        }, 1000)
     }
 
     render() {
-        const keys = Object.keys(this.state);
-        const values = Object.values(this.state);
+        const fieldsToView = {
+            combat: this.props.stats.combat,
+            intelligence: this.props.stats.intelligence,
+            power: this.props.stats.power,
+            speed: this.props.stats.speed,
+            strength: this.props.stats.strength,
+            durability: this.props.stats.durability
+        }
+        const keys = Object.keys(fieldsToView)
+        const values = Object.values(fieldsToView)
 
         const groupField = (key, value) => (
             <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                    <InputGroupText>{key}</InputGroupText>
+                <InputGroupAddon addonType="prepend" className="w-50">
+                    <InputGroupText className="w-100">{key}</InputGroupText>
                 </InputGroupAddon>
-                <Input className="unclickable" placeholder={value} />
+                <Input className="unclickable" placeholder={value} className="w-50" />
             </InputGroup>
         )
 
@@ -46,9 +51,14 @@ class ChosenCharacter extends Component {
                 <Card>
                     <img src={this.props.character.url} />
                     <CardBody>
-                        {this.state.combat ? keys.map((key, i) => {
-                            groupField(key, values[i]);
-                        }) : null}
+                        <Row>
+                            <Col>
+                                {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}
+                            </Col>
+                            <Col>
+                                {keys.slice(3, 5).map((key, i) => groupField(key, values[i]))}
+                            </Col>
+                        </Row>
                     </CardBody>
                 </Card>
             </div>
