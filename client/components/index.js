@@ -7,5 +7,5 @@ export {default as ChosenCharacter} from './characters/character/chosen'
 export {default as Search} from './characters/search'
 export {default as Admin} from './admin-controls'
 export {default as Pagination} from './characters/pagination'
-export {default as Results} from './characters/results'
+export {default as Results} from './characters/results.2'
 

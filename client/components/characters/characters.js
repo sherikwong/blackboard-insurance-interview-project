@@ -15,9 +15,8 @@ class Characters extends Component {
             [GRID_WITH_ALL_CHAR]: [],
             [GRID_WITH_FILTERED]: [],
             character: '',
-            characters: []
+            filtered: []
         };
-        this.fillInGrid = this.fillInGrid.bind(this);
         this.chooseCharacter = this.chooseCharacter.bind(this);
         this.filter = this.filter.bind(this);
         this.axiosGetAll = this.axiosGetAll.bind(this);
@@ -30,10 +29,6 @@ class Characters extends Component {
     axiosGetAll() {
         this.props.fetchByAlignment(this.props.alignment).then(() => {
             console.log(`Successfully retrieved ${this.props.alignment} characters from DB.`);
-            this.setState({
-                characters: this.props.characters,
-                [GRID_WITH_ALL_CHAR]: this.fillInGrid(this.props.characters)
-            });
         }).catch(error => console.error(`Failed to retrieve ${this.props.alignment} characters from DB b/c ${error}`));
     }
 
@@ -42,22 +37,22 @@ class Characters extends Component {
      * @param {*} characters Array of DB characters
      * @param {*} filtered Determines which grid key to fill in
      */
-    fillInGrid(characters, filtered = false) {
-        const grid = [];
-        let currentRow = [];
-        for (let i = 0; i < characters.length; i++) {
-            if (currentRow.length < 3) {
-                currentRow.push(characters[i]);
-            } else {
-                grid.push(currentRow);
-                currentRow = [];
-            }
-        }
-        this.setState({
-            [filtered ? GRID_WITH_FILTERED : GRID_WITH_ALL_CHAR]: grid
-        });
-        return grid;
-    }
+    // fillInGrid(characters, filtered = false) {
+    //     const grid = [];
+    //     let currentRow = [];
+    //     for (let i = 0; i < characters.length; i++) {
+    //         if (currentRow.length < 3) {
+    //             currentRow.push(characters[i]);
+    //         } else {
+    //             grid.push(currentRow);
+    //             currentRow = [];
+    //         }
+    //     }
+    //     this.setState({
+    //         [filtered ? GRID_WITH_FILTERED : GRID_WITH_ALL_CHAR]: grid
+    //     });
+    //     return grid;
+    // }
 
     chooseCharacter(character) {
         this.setState({ character });
@@ -66,14 +61,9 @@ class Characters extends Component {
     filter(substring) {
         // console.group(`Filtering for '${substring}'...`);
         const filtered = this.state.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
-        if (!substring) { // If no substring is provided...
-            // console.log('No substring given.')
-            this.setState({
-                [GRID_WITH_FILTERED]: []
-            })
-        } else { // If a substring is passed in...
-            this.fillInGrid(filtered, true);
-        }
+        this.setState({
+            filtered: substring ? filtered : []
+        })
         console.log(`Found ${filtered.length} results...`)
         console.log(filtered);
         console.log('Resulting state:', this.state)
@@ -93,9 +83,10 @@ class Characters extends Component {
                     <div className="alignment-header">
                         <img className={this.props.alignment} />
                     </div>
-                    <Results grid={this.state
+                    {/* <Results grid={this.state
                     [GRID_WITH_FILTERED] && this.state[GRID_WITH_FILTERED].length ? this.state
-                        [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} />
+                        [GRID_WITH_FILTERED] : this.state[GRID_WITH_ALL_CHAR]} chooseCharacter={this.chooseCharacter} /> */}
+                        <Results characters={this.state.filtered && this.state.filtered.length ? this.state.filtered : this.props.characters}/>
                 </CardBody>
                 <CardFooter>
                     <Row>
