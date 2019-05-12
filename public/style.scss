@@ -103,40 +103,19 @@ form div {
     @extend .full-container;
     height: 20rem;
     width: calc(100% + 2rem);
-    margin: 2rem;
     color: white;
-    padding: 1.5rem;
     flex-direction: column;
-    transition: all 2s ease;
+    transition: 2s ease;
+    position: absolute;
 
     &.continue-anyways {
-        height: 7rem;
-        width: 15rem;
-        top: 0;
-        right: 0;
-        position: absolute;
-        // padding: .2rem;
-
-        .progress-barr {
-            width: 10rem;
-            margin-bottom: 0
-        }
-
-        .loading {
-            // transform: translateY(20px);
-            opacity: 0;
-            height: 0;
-        }
-
-        .disappear {
-            opacity: 0;
-        }
+        opacity: 0
     }
 
     .progress-barr {
         width: 20rem;
-        height: 1rem;
-        transition: all 2s ease;
+        // height: 1rem;
+        transition: all 2.5s ease;
         margin-bottom: .5rem;
     }
 

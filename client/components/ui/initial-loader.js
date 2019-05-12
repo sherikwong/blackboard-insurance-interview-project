@@ -48,25 +48,10 @@ class InitialLoader extends Component {
                 <img className="loading mb-4" />
                 <Progress color="secondary" value={this.props.loadPercentage} className="progress-barr" />
                 <span className="mb-2 disappear">This is going to take a while...</span>
-                <Button color="secondary" onClick={this.minimizeLoading} className="disappear">Continue Anyways</Button>
+                <Button color="secondary" onClick={this.minimizeLoading}>Continue Anyways</Button>
             </div>
         )
     }
 }
 
-const mapState = state => {
-    return {
-    };
-}
-
-const mapDispatch = dispatch => {
-    return {
-    }
-}
-
-export default withRouter(
-    connect(
-        mapState,
-        mapDispatch
-    )(InitialLoader)
-);
+export default withRouter(InitialLoader);

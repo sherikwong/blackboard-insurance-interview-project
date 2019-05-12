@@ -8,7 +8,7 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            loaded: true,
+            loaded: false,
             loadPercentage: 0,
         };
         this.currentLoadPercentage = this.currentLoadPercentage.bind(this);
@@ -33,12 +33,11 @@ class Home extends Component {
     }
 
     minimizeLoading(event) {
-        event.preventDefault();
         setTimeout(() => {
             this.setState({
                 loaded: true
             });
-        }, 10000)
+        }, 500)
     }
 
     render() {
