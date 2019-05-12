@@ -19,7 +19,7 @@ class Character extends Component {
         return (
             <Card className="character-card" onClick={this.chooseCharacter}>
                 <img src={this.props.character.url} onError={(e) => { e.target.onerror = null; e.target.src = '/error.png' }} />
-                <CardFooter>{this.props.character.fullName}</CardFooter>
+                <CardFooter>{this.props.character.fullName ? this.props.character.fullName : 'N/A'}</CardFooter>
             </Card>
         )
     }

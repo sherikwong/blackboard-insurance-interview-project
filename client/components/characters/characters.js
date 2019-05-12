@@ -6,15 +6,10 @@ import { ChosenCharacter, Search, Results } from '../index'
 import { fetchByAlignment } from '../../store/superheroes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const GRID_WITH_ALL_CHAR = 'GRID_WITH_ALL_CHAR';
-const GRID_WITH_FILTERED = 'GRID_WITH_FILTERED';
-
 class Characters extends Component {
     constructor() {
         super();
         this.state = {
-            [GRID_WITH_ALL_CHAR]: [],
-            [GRID_WITH_FILTERED]: [],
             character: '',
             filtered: []
         };
@@ -39,7 +34,7 @@ class Characters extends Component {
     }
 
     filter(substring) {
-        const filtered = this.state.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
+        const filtered = this.props.characters.filter(character => character.fullName && character.fullName.toLowerCase().includes(substring.toLowerCase()));
         this.setState({
             filtered: substring ? filtered : []
         })
@@ -49,11 +44,13 @@ class Characters extends Component {
         this.setState({
             character: null
         })
+        console.log(this.state);
+        console.log(this.props);
     }
 
     render() {
         const chosenCharacter = (
-            this.state.character && <ChosenCharacter className="h-100" character={this.state.character} back={this.back} />
+            <ChosenCharacter className="h-100" character={this.state.character} back={this.back} />
         );
 
         const showResults = (
@@ -80,10 +77,10 @@ class Characters extends Component {
                 <div className={`flip-card-inner ${this.state.character && 'flip'}`}>
                     <Card className="h-100 results-card">
                         <div className="flip-card-front">
-                            {showResults}
+                            {!this.state.character && showResults}
                         </div>
                         <div className="flip-card-back">
-                            {chosenCharacter}
+                            {this.state.character && chosenCharacter}
                         </div>
                     </Card>
                 </div>

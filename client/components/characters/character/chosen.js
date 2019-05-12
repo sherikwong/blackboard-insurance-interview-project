@@ -30,7 +30,7 @@ class ChosenCharacter extends Component {
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>{key}</InputGroupText>
                 </InputGroupAddon>
-                <InputGroupAddon addonType="append">{value}</InputGroupAddon>
+                <InputGroupAddon addonType="append">{value ? value : 'N/A'}</InputGroupAddon>
             </InputGroup>
         )
 

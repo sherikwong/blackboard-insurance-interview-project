@@ -19,9 +19,9 @@ class Results extends Component {
 
     render() {
         return (<div>
-            <Row>
+            <Row className="m-0">
                 {this.props.characters && this.props.characters.map((character, i) => {
-                    return <Col key={i} className="col-4">
+                    return <Col key={i} className="col-4 mb-3">
                         <Character character={character} chooseCharacter={this.chooseCharacter} />
                     </Col>
                 })}

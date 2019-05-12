@@ -218,7 +218,6 @@ form div {
         }
 
         .characters-grid {
-            transition: opacity .5s ease width .5s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -236,9 +235,6 @@ form div {
                 &:hover {
                     background-color: rgba(#000, .6);
                     color: white;
-                    width: calc(100% + 1rem);
-                    transform: scale(1.05, 1.05);
-                    margin: -calc(15/2)px;
                 }
 
                 .card-footer {
