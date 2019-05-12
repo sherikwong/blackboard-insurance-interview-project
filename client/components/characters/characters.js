@@ -44,8 +44,10 @@ class Characters extends Component {
         this.setState({
             character: null
         })
-        console.log(this.state);
-        console.log(this.props);
+
+        setTimeout(() => {
+            alert('The characters don\'t appear back... Hack around it for now. :-) Refresh the page...');
+        }, 1000)
     }
 
     render() {

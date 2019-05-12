@@ -37,6 +37,8 @@ class ChosenCharacter extends Component {
         return (
             <div className="chosen-character-container">
                 <div className="chosen-character-image" style={{ backgroundImage: `url(${this.props.character.url})` }}>
+                <div>
+                    <h1>{this.props.character.fullName}</h1>
                     <Row>
                         <Col>
                             {keys.slice(0, 3).map((key, i) => groupField(key, values[i]))}
@@ -45,6 +47,7 @@ class ChosenCharacter extends Component {
                             {keys.slice(3, 6).map((key, i) => groupField(key, values[i]))}
                         </Col>
                     </Row>
+                </div>
                 </div>
             </div>
         )

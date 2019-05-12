@@ -1,10 +1,10 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-// @font-face {
-//     src: url('./avengeance/AVENGEANCE\ HEROIC\ AVENGER.ttf') format('ttf');
-//     font-family: 'header';
-// }
+@font-face {
+    src: url('./avengeance/AVENGEANCE\ HEROIC\ AVENGER.ttf') format('woff2');
+    font-family: 'header';
+}
 
 $primary: rgb(9, 125, 167);
 $secondary: #EC770F;
@@ -24,7 +24,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'header'
+    color: white;
+    text-shadow: 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black, 2px 0px 0 black, 0px 2px 0 black, -2px 0px 0 black, 0px -2px 0 black;
 }
 
 .center {
@@ -215,11 +216,6 @@ form div {
                     background-color: rgba(#000, .6);
                     color: white;
                 }
-
-                .card-footer {
-                    border-top: 1px solid black;
-                    padding: .5rem;
-                }
             }
         }
 
@@ -271,6 +267,19 @@ form div {
             }
         }
     }
+}
+
+.form-control {
+    border: 1px solid black;
+}
+
+button {
+    border: 1px solid black;
+}
+
+.card-footer {
+    border-top: 1px solid black;
+    padding: .5rem;
 }
 
 .footer {

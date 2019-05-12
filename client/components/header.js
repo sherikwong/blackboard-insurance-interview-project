@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Header = () => {
+class Header extends Component {
     constructor() {
         super();
         this.refresh = this.refresh.bind(this);
@@ -10,13 +10,16 @@ const Header = () => {
         window.location.reload();
     }
 
-    return (
-        <div className="header">
-            <div className="logo">
-                <img onClick={this.refresh} />
+
+    render() {
+        return (
+            <div className="header">
+                <div className="logo">
+                    <img onClick={this.refresh} />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Header;

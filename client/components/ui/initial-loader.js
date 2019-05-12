@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Progress, Button } from 'reactstrap';
 import axios from 'axios';
 import { NUMBER_OF_SUPERHEROES } from '../../constants';
