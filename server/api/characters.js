@@ -14,7 +14,6 @@ router.get('/alignment/:alignment', (req, res, next) => {
     order: [
       ['fullName', 'ASC']
     ]
-    // attributes: ['id', 'full-name', 'alignment', 'url']
   }).then(data => {
     res.send(data);
   }).catch(error => console.error(error));
