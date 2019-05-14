@@ -1,7 +1,7 @@
 # Blackboard Insurance Interview Project
 Hey, you. :-) I hope looking through this will be as fun as this project was for me.
 
-**Time spent:** Approx 30 hours~
+**Time spent:** Approx 35 hours~
 
 By Sheri Kwong
 
